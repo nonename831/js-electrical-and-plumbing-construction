@@ -13,7 +13,7 @@ const AppContent: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-gray-50">
+    <div id="home" className="min-h-screen flex flex-col font-sans bg-gray-50">
       <SEO />
 
       {/* Navbar at the top */}

@@ -20,8 +20,8 @@ export const CONTACT_INFO = {
 export const TRANSLATIONS = {
   zh: {
     seo: {
-      title: "JS 家陞电器水喉工程",
-      description: "新山(Johor Bahru)电器与水喉维修专家。提供跳电检查、安装风扇热水器、水管漏水维修与通阻塞服务。服务范围包括 Skudai, Mount Austin, Tebrau 等地。立即联系 Jason。",
+      title: "JS 家陞电器水喉工程 | 新山 JB 电器与水喉维修服务",
+      description: "新山(Johor Bahru)电器与水喉维修专家。安装风扇热水器、水管漏水维修与通阻塞服务。服务范围包括 Skudai, Mount Austin, Tebrau 等地。立即联系。",
       keywords: "新山维修, 新山水电工, JB plumber, JB electrician, 柔佛新山拉电, 换水箱, 安装热水器, JB 跳电维修, 家陞电器, 水喉佬 Johor, 厕所漏水, 厨房塞, 新山装修拉电"
     },
     nav: {
@@ -44,8 +44,8 @@ export const TRANSLATIONS = {
       description: "我们承接所有住家与店屋的电力维修和水喉工程，提供安全、可靠的解决方案。",
       items: [
         {
-          title: "电力故障与维修",
-          description: "检查处理跳电原因 (Power Trip)，维修家中所有电路问题。若电箱容量不足，我们提供更换与升级配电箱 (DB Box) 服务。",
+          title: "电力维修",
+          description: "若电箱容量不足，我们提供更换与升级配电箱 (DB Box) 服务。",
           icon: Zap
         },
         {
@@ -109,12 +109,12 @@ export const TRANSLATIONS = {
   },
   en: {
     seo: {
-      title: "JS Electrical & Plumbing Construction",
-      description: "Trusted Electrician & Plumber in Johor Bahru (JB). 20+ years fixing power trips, wiring, water leaks, and installing water heaters/fans. Serving Skudai, Mount Austin, Bukit Indah & surrounding areas. Call Jason now.",
+      title: "JS Electrical & Plumbing | Electrician & Plumber in Johor Bahru",
+      description: "Trusted Electrician & Plumber in Johor Bahru (JB). 20+ years fixing wiring, water leaks, and installing water heaters/fans. Serving Skudai, Mount Austin, Bukit Indah & surrounding areas. Call Jason now.",
       keywords: "Johor Bahru Electrician, JB Plumber, Electrical Wiring JB, Water Heater Installation, Power Trip Fix JB, JS Electrical, Skudai Electrician, Mount Austin Plumber, Toilet Repair JB, Emergency Electrician Johor"
     },
     nav: {
-      services: "Repair/Maintain Services",
+      services: "Services",
       contact: "Contact"
     },
     header: {
@@ -133,8 +133,8 @@ export const TRANSLATIONS = {
       description: "We undertake all electrical repair and plumbing works for homes and shop lots, providing reliable solutions.",
       items: [
         {
-          title: "Electrical Repair & Troubleshooting",
-          description: "Expert troubleshooting for power trips, blackouts, and wiring faults. We upgrade Distribution Boards (DB Box) and fix circuit breakers.",
+          title: "Electrical Repair",
+          description: "We upgrade Distribution Boards (DB Box) and fix circuit breakers.",
           icon: Zap
         },
         {

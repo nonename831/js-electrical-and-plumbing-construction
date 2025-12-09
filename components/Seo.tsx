@@ -66,56 +66,89 @@ export const SEO: React.FC = () => {
         updateMeta('meta[name="twitter:title"]', 'content', t.seo.title);
         updateMeta('meta[name="twitter:description"]', 'content', t.seo.description);
 
-        // 5. JSON-LD Structured Data (Advanced Local SEO)
+        // 5. JSON-LD Structured Data (Advanced Local SEO with Sitelinks)
         const jsonLd = {
             "@context": "https://schema.org",
-            "@type": ["HomeAndConstructionBusiness", "Electrician", "Plumber"],
-            "name": language === 'zh' ? "JS 家陞电器水喉工程" : "JS Electrical & Plumbing Construction",
-            "image": [
-                window.location.origin + "/logo.png"
-            ],
-            "description": t.seo.description,
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Johor Bahru",
-                "addressRegion": "Johor",
-                "addressCountry": "MY"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "1.4927",
-                "longitude": "103.7414"
-            },
-            "url": window.location.origin,
-            "telephone": CONTACT_INFO.phone,
-            "priceRange": "RM 80 - RM 1000+",
-            "openingHoursSpecification": [
+            "@graph": [
                 {
-                    "@type": "OpeningHoursSpecification",
-                    "dayOfWeek": [
-                        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+                    "@type": ["HomeAndConstructionBusiness", "Electrician", "Plumber"],
+                    "@id": window.location.origin + "/#localbusiness",
+                    "name": language === 'zh' ? "JS 家陞电器水喉工程" : "JS Electrical & Plumbing Construction",
+                    "image": [
+                        window.location.origin + "/logo.png"
                     ],
-                    "opens": "09:00",
-                    "closes": "17:00"
+                    "description": t.seo.description,
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Johor Bahru",
+                        "addressRegion": "Johor",
+                        "addressCountry": "MY"
+                    },
+                    "geo": {
+                        "@type": "GeoCoordinates",
+                        "latitude": "1.4927",
+                        "longitude": "103.7414"
+                    },
+                    "url": window.location.origin,
+                    "telephone": CONTACT_INFO.phone,
+                    "priceRange": "RM 80 - RM 1000+",
+                    "openingHoursSpecification": [
+                        {
+                            "@type": "OpeningHoursSpecification",
+                            "dayOfWeek": [
+                                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+                            ],
+                            "opens": "08:00",
+                            "closes": "20:00"
+                        }
+                    ],
+                    "areaServed": [
+                        { "@type": "City", "name": "Johor Bahru" },
+                        { "@type": "City", "name": "Skudai" },
+                        { "@type": "City", "name": "Mount Austin" },
+                        { "@type": "City", "name": "Bukit Indah" },
+                        { "@type": "City", "name": "Tebrau" },
+                        { "@type": "City", "name": "Perling" },
+                        { "@type": "City", "name": "Kulai" },
+                        { "@type": "City", "name": "Masai" },
+                        { "@type": "City", "name": "Pasir Gudang" }
+                    ]
+                },
+                {
+                    "@type": "WebSite",
+                    "@id": window.location.origin + "/#website",
+                    "url": window.location.origin,
+                    "name": language === 'zh' ? "JS 家陞电器水喉工程" : "JS Electrical & Plumbing",
+                    "publisher": {
+                        "@id": window.location.origin + "/#localbusiness"
+                    }
+                },
+                {
+                    "@type": "ItemList",
+                    "itemListElement": [
+                        {
+                            "@type": "SiteNavigationElement",
+                            "position": 1,
+                            "name": t.nav.services,
+                            "description": language === 'zh' ? "查看我们的电器与水喉维修服务项目" : "View our electrical and plumbing repair services",
+                            "url": window.location.origin + "/#services"
+                        },
+                        {
+                            "@type": "SiteNavigationElement",
+                            "position": 2,
+                            "name": t.nav.contact,
+                            "description": language === 'zh' ? "获取联系方式与服务区域" : "Get contact details and service areas",
+                            "url": window.location.origin + "/#contact"
+                        },
+                        {
+                            "@type": "SiteNavigationElement",
+                            "position": 3,
+                            "name": "WhatsApp",
+                            "description": language === 'zh' ? "立即在线咨询" : "Chat with us on WhatsApp instantly",
+                            "url": CONTACT_INFO.whatsappUrl
+                        }
+                    ]
                 }
-            ],
-            "areaServed": [
-                { "@type": "City", "name": "Johor Bahru" },
-                { "@type": "City", "name": "Skudai" },
-                { "@type": "City", "name": "Mount Austin" },
-                { "@type": "City", "name": "Bukit Indah" },
-                { "@type": "City", "name": "Tebrau" },
-                { "@type": "City", "name": "Perling" },
-                { "@type": "City", "name": "Kulai" },
-                { "@type": "City", "name": "Masai" },
-                { "@type": "City", "name": "Pasir Gudang" }
-            ],
-            "knowsAbout": [
-                "Electrical Wiring",
-                "Power Trip Repair",
-                "Water Heater Installation",
-                "Plumbing Leak Repair",
-                "Ceiling Fan Installation"
             ]
         };
 
@@ -129,6 +162,28 @@ export const SEO: React.FC = () => {
         script.textContent = JSON.stringify(jsonLd);
 
     }, [t, language]);
+
+    // Google Analytics Injection
+    useEffect(() => {
+        if (GOOGLE_ANALYTICS_ID && !document.getElementById('ga-script')) {
+            // 1. Load the script tag
+            const script = document.createElement('script');
+            script.id = 'ga-script';
+            script.async = true;
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`;
+            document.head.appendChild(script);
+
+            // 2. Configure the dataLayer
+            window.dataLayer = window.dataLayer || [];
+            function gtag(...args: any[]) {
+                window.dataLayer.push(args);
+            }
+            // @ts-ignore
+            gtag('js', new Date());
+            // @ts-ignore
+            gtag('config', GOOGLE_ANALYTICS_ID);
+        }
+    }, []);
 
     return null;
 };
