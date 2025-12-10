@@ -21,8 +21,8 @@ export const TRANSLATIONS = {
   zh: {
     seo: {
       title: "JS 家陞电器水喉工程 | 新山 JB 电器与水喉维修服务",
-      description: "新山(Johor Bahru)电器与水喉维修专家。安装风扇热水器、水管漏水维修与通阻塞服务。服务范围包括 Skudai, Mount Austin, Tebrau 等地。立即联系。",
-      keywords: "新山维修, 新山水电工, JB plumber, JB electrician, 柔佛新山拉电, 换水箱, 安装热水器, JB 跳电维修, 家陞电器, 水喉佬 Johor, 厕所漏水, 厨房塞, 新山装修拉电"
+      description: "新山(Johor Bahru)电器与水喉维修专家。安装风扇热水器、水管漏水维修与通阻塞服务。服务范围：Skudai, Mount Austin, Bukit Indah, Perling, Kempas, Permas Jaya, Johor Jaya。立即联系 Jason。",
+      keywords: "新山维修, 新山水电工, JB plumber, JB electrician, 柔佛新山拉电, 换水箱, 安装热水器, JB 跳电维修, 家陞电器, 水喉佬 Johor, 厕所漏水, 厨房塞, 新山装修拉电, Taman Daya, Austin Heights, Eco Botanic"
     },
     nav: {
       services: "维修项目",
@@ -110,8 +110,8 @@ export const TRANSLATIONS = {
   en: {
     seo: {
       title: "JS Electrical & Plumbing | Electrician & Plumber in Johor Bahru",
-      description: "Trusted Electrician & Plumber in Johor Bahru (JB). 20+ years fixing wiring, water leaks, and installing water heaters/fans. Serving Skudai, Mount Austin, Bukit Indah & surrounding areas. Call Jason now.",
-      keywords: "Johor Bahru Electrician, JB Plumber, Electrical Wiring JB, Water Heater Installation, Power Trip Fix JB, JS Electrical, Skudai Electrician, Mount Austin Plumber, Toilet Repair JB, Emergency Electrician Johor"
+      description: "Trusted Electrician & Plumber in Johor Bahru (JB). 20+ years fixing wiring, water leaks, and installing water heaters/fans. Serving Skudai, Mount Austin, Bukit Indah, Perling, Kempas, Permas Jaya & surrounding areas. Call Jason now.",
+      keywords: "Johor Bahru Electrician, JB Plumber, Electrical Wiring JB, Water Heater Installation, JS Electrical, Skudai Electrician, Mount Austin Plumber, Toilet Repair JB, Emergency Electrician Johor, Taman Daya, Austin Heights, Eco Botanic"
     },
     nav: {
       services: "Services",
