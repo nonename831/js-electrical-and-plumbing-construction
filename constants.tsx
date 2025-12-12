@@ -8,7 +8,7 @@ import { ServiceItem, PricingItem } from './types';
 // 1. Go to analytics.google.com
 // 2. Create an account and get your "Measurement ID" (starts with G-)
 // 3. Paste it below. Example: "G-123456789"
-export const GOOGLE_ANALYTICS_ID = "";
+export const GOOGLE_ANALYTICS_ID = "G-JM8LSQLCNK";
 
 export const CONTACT_INFO = {
   phone: "+6016-763 9639",

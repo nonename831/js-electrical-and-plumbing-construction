@@ -163,27 +163,27 @@ export const SEO: React.FC = () => {
 
     }, [t, language]);
 
-    // Google Analytics Injection
-    useEffect(() => {
-        if (GOOGLE_ANALYTICS_ID && !document.getElementById('ga-script')) {
-            // 1. Load the script tag
-            const script = document.createElement('script');
-            script.id = 'ga-script';
-            script.async = true;
-            script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`;
-            document.head.appendChild(script);
+    // // Google Analytics Injection
+    // useEffect(() => {
+    //     if (GOOGLE_ANALYTICS_ID && !document.getElementById('ga-script')) {
+    //         // 1. Load the script tag
+    //         const script = document.createElement('script');
+    //         script.id = 'ga-script';
+    //         script.async = true;
+    //         script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`;
+    //         document.head.appendChild(script);
 
-            // 2. Configure the dataLayer
-            window.dataLayer = window.dataLayer || [];
-            function gtag(...args: any[]) {
-                window.dataLayer.push(args);
-            }
-            // @ts-ignore
-            gtag('js', new Date());
-            // @ts-ignore
-            gtag('config', GOOGLE_ANALYTICS_ID);
-        }
-    }, []);
+    //         // 2. Configure the dataLayer
+    //         window.dataLayer = window.dataLayer || [];
+    //         function gtag(...args: any[]) {
+    //             window.dataLayer.push(args);
+    //         }
+    //         // @ts-ignore
+    //         gtag('js', new Date());
+    //         // @ts-ignore
+    //         gtag('config', GOOGLE_ANALYTICS_ID);
+    //     }
+    // }, []);
 
     return null;
 };

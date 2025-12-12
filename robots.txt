@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nonename831.github.io/js-electrical-and-plumbing-construction/sitemap.xml
