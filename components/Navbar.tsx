@@ -43,6 +43,7 @@ export const Navbar: React.FC = () => {
             <img
               src="logo.png"
               alt="JS Electrical Logo"
+              draggable={false}
               className="h-10 md:h-14 w-auto object-contain"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
