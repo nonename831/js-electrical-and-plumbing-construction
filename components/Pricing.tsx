@@ -22,7 +22,7 @@ export const Pricing: React.FC = () => {
             <div
               key={index}
               className={`
-                bg-white rounded-3xl p-8 transition-all duration-300 flex flex-col
+                relative bg-white rounded-3xl p-8 transition-all duration-300 flex flex-col
                 ${index === 1 ? 'shadow-2xl ring-2 ring-brand-blue scale-105 z-10' : 'shadow-xl hover:shadow-2xl border border-gray-100'}
               `}
             >

@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { CONTACT_INFO, GOOGLE_ANALYTICS_ID } from '../constants';
+import { CONTACT_INFO } from '../constants';
 
-// Add type definition for window.dataLayer
 declare global {
     interface Window {
         dataLayer: any[];
@@ -10,149 +9,157 @@ declare global {
     }
 }
 
+const SITE_URL = 'https://nonename831.github.io/js-electrical-and-plumbing-construction';
+const LOGO_URL = `${SITE_URL}/logo.png`;
+
 export const SEO: React.FC = () => {
     const { t, language } = useLanguage();
 
     useEffect(() => {
-        // 1. Update Document Title
-        document.title = t.seo.title;
-
-        // 2. Update <html> lang attribute
-        document.documentElement.lang = language === 'zh' ? 'zh-MY' : 'en-MY';
-
-        // 3. Helper function to update or create meta tags
+        // --- Helper ---
         const updateMeta = (selector: string, attribute: string, value: string) => {
-            let element = document.querySelector(selector);
-            if (!element) {
-                element = document.createElement('meta');
-
+            let el = document.querySelector(selector);
+            if (!el) {
+                el = document.createElement('meta');
                 if (selector.startsWith('meta[name=')) {
                     const name = selector.match(/name="([^"]+)"/)?.[1];
-                    if (name) element.setAttribute('name', name);
+                    if (name) el.setAttribute('name', name);
                 } else if (selector.startsWith('meta[property=')) {
-                    const property = selector.match(/property="([^"]+)"/)?.[1];
-                    if (property) element.setAttribute('property', property);
+                    const prop = selector.match(/property="([^"]+)"/)?.[1];
+                    if (prop) el.setAttribute('property', prop);
                 }
-
-                document.head.appendChild(element);
+                document.head.appendChild(el);
             }
-            element.setAttribute(attribute, value);
+            el.setAttribute(attribute, value);
         };
 
-        // 4. Update Meta Tags
+        // --- Document ---
+        document.title = t.seo.title;
+        document.documentElement.lang = language === 'zh' ? 'zh-MY' : 'en-MY';
+
+        // --- Core Meta ---
         updateMeta('meta[name="description"]', 'content', t.seo.description);
         updateMeta('meta[name="keywords"]', 'content', t.seo.keywords);
         updateMeta('meta[name="robots"]', 'content', 'index, follow');
+        updateMeta('meta[name="format-detection"]', 'content', 'telephone=yes');
 
-        // Canonical Link
-        let linkCanonical = document.querySelector('link[rel="canonical"]');
-        if (!linkCanonical) {
-            linkCanonical = document.createElement('link');
-            linkCanonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(linkCanonical);
+        // --- Canonical ---
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+            canonical = document.createElement('link');
+            canonical.setAttribute('rel', 'canonical');
+            document.head.appendChild(canonical);
         }
-        linkCanonical.setAttribute('href', window.location.origin + window.location.pathname);
+        canonical.setAttribute('href', SITE_URL + '/');
 
-        // Open Graph / Social
+        // --- Open Graph ---
+        // ✅ 修复：zh_MY 而不是 zh_CN
+        const ogLocale = language === 'zh' ? 'zh_MY' : 'en_MY';
         updateMeta('meta[property="og:title"]', 'content', t.seo.title);
         updateMeta('meta[property="og:description"]', 'content', t.seo.description);
-        updateMeta('meta[property="og:url"]', 'content', window.location.href);
-        updateMeta('meta[property="og:locale"]', 'content', language === 'zh' ? 'zh_CN' : 'en_US');
-        updateMeta('meta[property="og:site_name"]', 'content', 'JS Electrical & Plumbing');
+        updateMeta('meta[property="og:url"]', 'content', SITE_URL + '/');
+        updateMeta('meta[property="og:locale"]', 'content', ogLocale);
+        updateMeta('meta[property="og:site_name"]', 'content', 'JS 家陞电器水喉工程');
         updateMeta('meta[property="og:type"]', 'content', 'website');
+        updateMeta('meta[property="og:image"]', 'content', LOGO_URL);
+        updateMeta('meta[property="og:image:width"]', 'content', '512');
+        updateMeta('meta[property="og:image:height"]', 'content', '512');
+        updateMeta('meta[property="og:image:alt"]', 'content', t.seo.title);
 
-        // Twitter Card
+        // --- Twitter ---
         updateMeta('meta[name="twitter:card"]', 'content', 'summary_large_image');
         updateMeta('meta[name="twitter:title"]', 'content', t.seo.title);
         updateMeta('meta[name="twitter:description"]', 'content', t.seo.description);
+        updateMeta('meta[name="twitter:image"]', 'content', LOGO_URL);
 
-        // 5. JSON-LD Structured Data (Advanced Local SEO with Sitelinks)
+        // --- JSON-LD ---
+        const businessName = language === 'zh'
+            ? 'JS 家陞电器水喉工程'
+            : 'JS Electrical & Plumbing Construction';
+
         const jsonLd = {
-            "@context": "https://schema.org",
-            "@graph": [
+            '@context': 'https://schema.org',
+            '@graph': [
                 {
-                    "@type": ["HomeAndConstructionBusiness", "Electrician", "Plumber"],
-                    "@id": window.location.origin + "/#localbusiness",
-                    "name": language === 'zh' ? "JS 家陞电器水喉工程" : "JS Electrical & Plumbing Construction",
-                    "image": [
-                        window.location.origin + "/logo.png"
-                    ],
-                    "description": t.seo.description,
-                    "address": {
-                        "@type": "PostalAddress",
-                        "addressLocality": "Johor Bahru",
-                        "addressRegion": "Johor",
-                        "addressCountry": "MY"
+                    '@type': ['HomeAndConstructionBusiness', 'Electrician', 'Plumber'],
+                    '@id': SITE_URL + '/#localbusiness',
+                    'name': businessName,
+                    'alternateName': language === 'zh'
+                        ? 'JS Electrical & Plumbing Construction'
+                        : 'JS 家陞电器水喉工程',
+                    'image': [LOGO_URL],
+                    'logo': LOGO_URL,
+                    'description': t.seo.description,
+                    'url': SITE_URL + '/',
+                    'telephone': CONTACT_INFO.phone,
+                    'priceRange': 'RM 80 - RM 1000+',
+                    'sameAs': [CONTACT_INFO.whatsappUrl],
+                    'hasMap': 'https://www.google.com/maps/search/JS+家陞电器水喉工程+Johor+Bahru',
+                    'address': {
+                        '@type': 'PostalAddress',
+                        'addressLocality': 'Johor Bahru',
+                        'addressRegion': 'Johor',
+                        'addressCountry': 'MY',
                     },
-                    "geo": {
-                        "@type": "GeoCoordinates",
-                        "latitude": "1.4927",
-                        "longitude": "103.7414"
+                    'geo': {
+                        '@type': 'GeoCoordinates',
+                        'latitude': '1.4927',
+                        'longitude': '103.7414',
                     },
-                    "url": window.location.origin,
-                    "telephone": CONTACT_INFO.phone,
-                    "priceRange": "RM 80 - RM 1000+",
-                    "openingHoursSpecification": [
-                        {
-                            "@type": "OpeningHoursSpecification",
-                            "dayOfWeek": [
-                                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
-                            ],
-                            "opens": "08:00",
-                            "closes": "20:00"
-                        }
-                    ],
-                    "areaServed": [
-                        { "@type": "City", "name": "Johor Bahru" },
-                        { "@type": "City", "name": "Skudai" },
-                        { "@type": "City", "name": "Mount Austin" },
-                        { "@type": "City", "name": "Bukit Indah" },
-                        { "@type": "City", "name": "Tebrau" },
-                        { "@type": "City", "name": "Perling" },
-                        { "@type": "City", "name": "Kulai" },
-                        { "@type": "City", "name": "Masai" },
-                        { "@type": "City", "name": "Pasir Gudang" }
-                    ]
+                    'openingHoursSpecification': [{
+                        '@type': 'OpeningHoursSpecification',
+                        'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                        'opens': '08:00',
+                        'closes': '20:00',
+                    }],
+                    'areaServed': [
+                        'Johor Bahru', 'Skudai', 'Mount Austin', 'Bukit Indah',
+                        'Tebrau', 'Perling', 'Kulai', 'Masai', 'Pasir Gudang',
+                        'Kempas', 'Permas Jaya', 'Johor Jaya',
+                    ].map(name => ({ '@type': 'City', name })),
                 },
                 {
-                    "@type": "WebSite",
-                    "@id": window.location.origin + "/#website",
-                    "url": window.location.origin,
-                    "name": language === 'zh' ? "JS 家陞电器水喉工程" : "JS Electrical & Plumbing",
-                    "publisher": {
-                        "@id": window.location.origin + "/#localbusiness"
-                    }
+                    '@type': 'WebSite',
+                    '@id': SITE_URL + '/#website',
+                    'url': SITE_URL + '/',
+                    'name': businessName,
+                    'publisher': { '@id': SITE_URL + '/#localbusiness' },
                 },
                 {
-                    "@type": "ItemList",
-                    "itemListElement": [
+                    '@type': 'ItemList',
+                    'itemListElement': [
                         {
-                            "@type": "SiteNavigationElement",
-                            "position": 1,
-                            "name": t.nav.services,
-                            "description": language === 'zh' ? "查看我们的电器与水喉维修服务项目" : "View our electrical and plumbing repair services",
-                            "url": window.location.origin + "/#services"
+                            '@type': 'SiteNavigationElement',
+                            'position': 1,
+                            'name': t.nav.services,
+                            'description': language === 'zh'
+                                ? '查看我们的电器与水喉维修服务项目'
+                                : 'View our electrical and plumbing repair services',
+                            'url': SITE_URL + '/#services',
                         },
                         {
-                            "@type": "SiteNavigationElement",
-                            "position": 2,
-                            "name": t.nav.contact,
-                            "description": language === 'zh' ? "获取联系方式与服务区域" : "Get contact details and service areas",
-                            "url": window.location.origin + "/#contact"
+                            '@type': 'SiteNavigationElement',
+                            'position': 2,
+                            'name': t.nav.contact,
+                            'description': language === 'zh'
+                                ? '获取联系方式与服务区域'
+                                : 'Get contact details and service areas',
+                            'url': SITE_URL + '/#contact',
                         },
                         {
-                            "@type": "SiteNavigationElement",
-                            "position": 3,
-                            "name": "WhatsApp",
-                            "description": language === 'zh' ? "立即在线咨询" : "Chat with us on WhatsApp instantly",
-                            "url": CONTACT_INFO.whatsappUrl
-                        }
-                    ]
-                }
-            ]
+                            '@type': 'SiteNavigationElement',
+                            'position': 3,
+                            'name': 'WhatsApp',
+                            'description': language === 'zh'
+                                ? '立即在线咨询'
+                                : 'Chat with us on WhatsApp instantly',
+                            'url': CONTACT_INFO.whatsappUrl,
+                        },
+                    ],
+                },
+            ],
         };
 
-        // Inject or update JSON-LD script
         let script = document.querySelector('script[type="application/ld+json"]');
         if (!script) {
             script = document.createElement('script');
@@ -162,28 +169,6 @@ export const SEO: React.FC = () => {
         script.textContent = JSON.stringify(jsonLd);
 
     }, [t, language]);
-
-    // // Google Analytics Injection
-    // useEffect(() => {
-    //     if (GOOGLE_ANALYTICS_ID && !document.getElementById('ga-script')) {
-    //         // 1. Load the script tag
-    //         const script = document.createElement('script');
-    //         script.id = 'ga-script';
-    //         script.async = true;
-    //         script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`;
-    //         document.head.appendChild(script);
-
-    //         // 2. Configure the dataLayer
-    //         window.dataLayer = window.dataLayer || [];
-    //         function gtag(...args: any[]) {
-    //             window.dataLayer.push(args);
-    //         }
-    //         // @ts-ignore
-    //         gtag('js', new Date());
-    //         // @ts-ignore
-    //         gtag('config', GOOGLE_ANALYTICS_ID);
-    //     }
-    // }, []);
 
     return null;
 };
