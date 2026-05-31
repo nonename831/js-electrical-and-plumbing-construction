@@ -106,7 +106,7 @@ export const Gallery: React.FC = () => {
     },
     {
       key: 'plumbing',
-      labelZh: '水喇工程',
+      labelZh: '水喉工程',
       labelEn: 'Plumbing Works',
       icon: <Droplets size={16} />,
     },
