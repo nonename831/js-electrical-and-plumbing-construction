@@ -2,6 +2,7 @@ import React from 'react';
 import { Header } from './components/Header';
 import { Navbar } from './components/Navbar';
 import { Services } from './components/Services';
+import { Gallery } from './components/Gallery';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { SEO } from './components/Seo';
@@ -76,6 +77,7 @@ const AppContent: React.FC = () => {
 
       <main className="flex-grow">
         <Services />
+        <Gallery />
         <AnimatedContact />
       </main>
 
