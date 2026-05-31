@@ -9,7 +9,7 @@ declare global {
     }
 }
 
-const SITE_URL = 'https://nonename831.github.io/js-electrical-and-plumbing-construction/assets/images';
+const SITE_URL = 'https://nonename831.github.io/js-electrical-and-plumbing-construction';
 const LOGO_URL = `${SITE_URL}/logo.png`;
 
 export const SEO: React.FC = () => {

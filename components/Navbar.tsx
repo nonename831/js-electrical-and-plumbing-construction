@@ -19,35 +19,34 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: t.nav.services, href: '#services' },
-    // ✅ Gallery link — label switches with language
     { name: language === 'zh' ? '工程案例' : 'Gallery', href: '#gallery' },
     { name: t.nav.contact, href: '#contact' },
   ];
 
   return (
-    <nav
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled
-        ? 'bg-white/95 backdrop-blur-md shadow-md py-2 border-b border-gray-200'
-        : 'bg-white py-3 shadow-sm border-b border-gray-100'
-        }`}
+    <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled
+      ? 'bg-white/95 backdrop-blur-md shadow-md py-2 border-b border-gray-200'
+      : 'bg-white py-3 shadow-sm border-b border-gray-100'}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
 
-          {/* Left: Logo */}
+          {/* Left: Logo — ✅ #8 加 width/height 减少 CLS */}
           <div className="flex items-center gap-3 flex-shrink-0 cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
             <img
               src="/js-electrical-and-plumbing-construction/assets/images/logo.png"
-              alt="JS Electrical Logo"
+              alt="JS Electrical & Plumbing Logo"
               draggable={false}
+              width="56"
+              height="56"
               className="h-10 md:h-14 w-auto object-contain"
-              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              onError={e => { e.currentTarget.style.display = 'none'; }}
             />
           </div>
 
           {/* Desktop Center: Links */}
           <div className="hidden md:flex items-center gap-10 absolute left-1/2 transform -translate-x-1/2">
-            {navLinks.map((link) => (
+            {navLinks.map(link => (
               <a
                 key={link.name}
                 href={link.href}
@@ -64,9 +63,9 @@ export const Navbar: React.FC = () => {
             <div
               onClick={toggleLanguage}
               className="relative w-20 h-10 bg-slate-200 rounded-full cursor-pointer p-1 shadow-inner transition-colors hover:bg-slate-300"
-              title={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
               role="button"
               aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
+              title={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
             >
               <div className="absolute inset-0 flex justify-between items-center px-3 text-xs font-bold text-gray-500 select-none">
                 <span className={language === 'zh' ? 'opacity-0' : 'opacity-100'}>中</span>
@@ -78,7 +77,6 @@ export const Navbar: React.FC = () => {
                 </span>
               </div>
             </div>
-
             <a
               href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
               className="flex items-center gap-2 bg-brand-dark hover:bg-brand-blue text-white px-6 py-2.5 rounded-full text-base font-bold shadow-md transition-all transform hover:scale-105"
@@ -108,11 +106,9 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-t border-gray-100 shadow-2xl transition-all duration-300 ease-in-out transform origin-top ${isOpen
-          ? 'opacity-100 translate-y-0 visible scale-y-100'
-          : 'opacity-0 -translate-y-4 invisible scale-y-95 pointer-events-none'
-          }`}
+      <div className={`md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl transition-all duration-300 ease-in-out transform origin-top ${isOpen
+        ? 'opacity-100 translate-y-0 visible scale-y-100'
+        : 'opacity-0 -translate-y-4 invisible scale-y-95 pointer-events-none'}`}
       >
         <div className="flex flex-col p-6 space-y-4">
           {navLinks.map((link, idx) => (
@@ -126,7 +122,6 @@ export const Navbar: React.FC = () => {
               {link.name}
             </a>
           ))}
-
           <div className={`pt-4 mt-2 transition-all duration-500 delay-200 transform ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
             <a
               href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
@@ -137,7 +132,6 @@ export const Navbar: React.FC = () => {
             </a>
           </div>
         </div>
-
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-brand-dark via-brand-blue to-brand-cyan" />
       </div>
     </nav>
