@@ -18,15 +18,15 @@ interface GalleryImage {
 // Then add entries below following the same format.
 const IMAGES: GalleryImage[] = [
   // Electrical
-  { src: '/js-electrical-and-plumbing-construction/assets/images/electrical-1.png', category: 'electrical', captionZh: '配电箱安装', captionEn: 'DB Box Installation' },
-  { src: '/js-electrical-and-plumbing-construction/assets/images/electrical-2.png', category: 'electrical', captionZh: '电线布线工程', captionEn: 'Wiring Works' },
-  { src: '/js-electrical-and-plumbing-construction/assets/images/electrical-3.png', category: 'electrical', captionZh: '灯具安装', captionEn: 'Light Fixture Installation', objectPosition: 'top' },
-  { src: '/js-electrical-and-plumbing-construction/assets/images/electrical-4.png', category: 'electrical', captionZh: '风扇安装', captionEn: 'Ceiling Fan Installation' },
+  { src: '/js-electrical-and-plumbing-construction/assets/images/electrical-1.png', category: 'electrical', captionZh: '安装配电箱', captionEn: 'DB Box Installation' },
+  { src: '/js-electrical-and-plumbing-construction/assets/images/electrical-2.png', category: 'electrical', captionZh: '安装插头', captionEn: 'Socket Installation' },
+  { src: '/js-electrical-and-plumbing-construction/assets/images/electrical-3.png', category: 'electrical', captionZh: '安装灯具', captionEn: 'Light Fixture Installation', objectPosition: 'top' },
+  { src: '/js-electrical-and-plumbing-construction/assets/images/electrical-4.png', category: 'electrical', captionZh: '安装风扇', captionEn: 'Ceiling Fan Installation' },
   // Plumbing
-  { src: '/js-electrical-and-plumbing-construction/assets/images/plumbing-1.png', category: 'plumbing', captionZh: '热水器安装', captionEn: 'Water Heater Installation', objectPosition: 'top' },
-  { src: '/js-electrical-and-plumbing-construction/assets/images/plumbing-2.png', category: 'plumbing', captionZh: '水管维修', captionEn: 'Pipe Repair', objectPosition: 'top' },
-  { src: '/js-electrical-and-plumbing-construction/assets/images/plumbing-3.png', category: 'plumbing', captionZh: '马桶安装', captionEn: 'Toilet Installation', objectPosition: 'top' },
-  { src: '/js-electrical-and-plumbing-construction/assets/images/plumbing-4.png', category: 'plumbing', captionZh: '水喉管道工程', captionEn: 'Piping Works', objectPosition: 'top' },
+  { src: '/js-electrical-and-plumbing-construction/assets/images/plumbing-1.png', category: 'plumbing', captionZh: '安装热水器', captionEn: 'Water Heater Installation', objectPosition: '50% 20%' },
+  { src: '/js-electrical-and-plumbing-construction/assets/images/plumbing-2.png', category: 'plumbing', captionZh: '水管维修', captionEn: 'Pipe Repair', objectPosition: '50% 10%' },
+  { src: '/js-electrical-and-plumbing-construction/assets/images/plumbing-3.png', category: 'plumbing', captionZh: '安装马桶', captionEn: 'Toilet Installation', objectPosition: 'top' },
+  { src: '/js-electrical-and-plumbing-construction/assets/images/plumbing-4.png', category: 'plumbing', captionZh: '安装洗手盆', captionEn: 'Basin Installation', objectPosition: 'top' },
 ];
 
 // ─── Scroll reveal hook ───────────────────────────────────────────────────────
