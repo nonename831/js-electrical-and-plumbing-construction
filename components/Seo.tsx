@@ -10,13 +10,12 @@ declare global {
 }
 
 const SITE_URL = 'https://nonename831.github.io/js-electrical-and-plumbing-construction';
-const LOGO_URL = `${SITE_URL}/logo.png`;
+const LOGO_URL = `${SITE_URL}/assets/images/logo.png`;
 
 export const SEO: React.FC = () => {
     const { t, language } = useLanguage();
 
     useEffect(() => {
-        // --- Helper ---
         const updateMeta = (selector: string, attribute: string, value: string) => {
             let el = document.querySelector(selector);
             if (!el) {
@@ -33,17 +32,14 @@ export const SEO: React.FC = () => {
             el.setAttribute(attribute, value);
         };
 
-        // --- Document ---
         document.title = t.seo.title;
         document.documentElement.lang = language === 'zh' ? 'zh-MY' : 'en-MY';
 
-        // --- Core Meta ---
         updateMeta('meta[name="description"]', 'content', t.seo.description);
         updateMeta('meta[name="keywords"]', 'content', t.seo.keywords);
         updateMeta('meta[name="robots"]', 'content', 'index, follow');
         updateMeta('meta[name="format-detection"]', 'content', 'telephone=yes');
 
-        // --- Canonical ---
         let canonical = document.querySelector('link[rel="canonical"]');
         if (!canonical) {
             canonical = document.createElement('link');
@@ -52,8 +48,6 @@ export const SEO: React.FC = () => {
         }
         canonical.setAttribute('href', SITE_URL + '/');
 
-        // --- Open Graph ---
-        // ✅ 修复：zh_MY 而不是 zh_CN
         const ogLocale = language === 'zh' ? 'zh_MY' : 'en_MY';
         updateMeta('meta[property="og:title"]', 'content', t.seo.title);
         updateMeta('meta[property="og:description"]', 'content', t.seo.description);
@@ -66,13 +60,11 @@ export const SEO: React.FC = () => {
         updateMeta('meta[property="og:image:height"]', 'content', '512');
         updateMeta('meta[property="og:image:alt"]', 'content', t.seo.title);
 
-        // --- Twitter ---
         updateMeta('meta[name="twitter:card"]', 'content', 'summary_large_image');
         updateMeta('meta[name="twitter:title"]', 'content', t.seo.title);
         updateMeta('meta[name="twitter:description"]', 'content', t.seo.description);
         updateMeta('meta[name="twitter:image"]', 'content', LOGO_URL);
 
-        // --- JSON-LD ---
         const businessName = language === 'zh'
             ? 'JS 家陞电器水喉工程'
             : 'JS Electrical & Plumbing Construction';
@@ -138,8 +130,18 @@ export const SEO: React.FC = () => {
                             'url': SITE_URL + '/#services',
                         },
                         {
+                            // ✅ #3 加入 gallery 导航
                             '@type': 'SiteNavigationElement',
                             'position': 2,
+                            'name': language === 'zh' ? '工程案例' : 'Gallery',
+                            'description': language === 'zh'
+                                ? '查看我们的实际工程照片'
+                                : 'View our project photos',
+                            'url': SITE_URL + '/#gallery',
+                        },
+                        {
+                            '@type': 'SiteNavigationElement',
+                            'position': 3,
                             'name': t.nav.contact,
                             'description': language === 'zh'
                                 ? '获取联系方式与服务区域'
@@ -148,7 +150,7 @@ export const SEO: React.FC = () => {
                         },
                         {
                             '@type': 'SiteNavigationElement',
-                            'position': 3,
+                            'position': 4,
                             'name': 'WhatsApp',
                             'description': language === 'zh'
                                 ? '立即在线咨询'

@@ -6,16 +6,12 @@ import { useLanguage } from '../contexts/LanguageContext';
 export const Contact: React.FC = () => {
   const { t } = useLanguage();
 
-  // ✅ Fix WhatsApp back-navigation stacking issue (Safari / Chrome mobile)
+  // ✅ #1 修复：用 scrollRestoration 替代 pageshow reload
+  // pageshow + reload 会导致从 WhatsApp 返回时整页刷新，体验很差
   useEffect(() => {
-    const handlePageShow = (event: PageTransitionEvent) => {
-      if (event.persisted) {
-        window.location.reload();
-      }
-    };
-
-    window.addEventListener('pageshow', handlePageShow);
-    return () => window.removeEventListener('pageshow', handlePageShow);
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
   }, []);
 
   return (
@@ -34,12 +30,8 @@ export const Contact: React.FC = () => {
               <div className="bg-blue-100 p-3 rounded-full text-brand-blue mb-4">
                 <Phone size={24} />
               </div>
-              <h4 className="font-bold text-lg mb-1">
-                {t.contact.callOrWhatsapp}
-              </h4>
-              <p className="text-gray-600 mb-2">
-                {CONTACT_INFO.contactName}
-              </p>
+              <h4 className="font-bold text-lg mb-1">{t.contact.callOrWhatsapp}</h4>
+              <p className="text-gray-600 mb-2">{CONTACT_INFO.contactName}</p>
               <a
                 href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
                 className="text-brand-blue font-semibold text-lg hover:underline"
@@ -52,13 +44,9 @@ export const Contact: React.FC = () => {
               <div className="bg-blue-100 p-3 rounded-full text-brand-blue mb-4">
                 <MapPin size={24} />
               </div>
-              <h4 className="font-bold text-lg mb-1">
-                {t.contact.serviceArea}
-              </h4>
+              <h4 className="font-bold text-lg mb-1">{t.contact.serviceArea}</h4>
               <p className="text-gray-600">{t.contact.covering}</p>
-              <p className="text-brand-dark font-semibold mt-1">
-                {CONTACT_INFO.area}
-              </p>
+              <p className="text-brand-dark font-semibold mt-1">{CONTACT_INFO.area}</p>
             </div>
           </div>
 
@@ -77,15 +65,12 @@ export const Contact: React.FC = () => {
                 w-full md:w-auto
               "
             >
-              <MessageCircle
-                size={24}
-                className="group-hover:animate-pulse"
-              />
+              <MessageCircle size={24} className="group-hover:animate-pulse" />
               <span>{t.contact.chatButton}</span>
             </a>
 
             <p className="mt-5 text-sm text-gray-400 font-medium flex items-center justify-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
               {t.contact.response}
             </p>
           </div>
