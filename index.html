@@ -16,9 +16,10 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="format-detection" content="telephone=yes" />
 
-  <!-- ✅ Favicon -->
+  <!-- ✅ #7 统一用相对路径 -->
   <link rel="icon" type="image/x-icon" href="/js-electrical-and-plumbing-construction/assets/favicon-C3FUg4fn.ico" />
   <link rel="apple-touch-icon" href="/js-electrical-and-plumbing-construction/assets/favicon-C3FUg4fn.ico" />
+  <link rel="sitemap" type="application/xml" href="data:text/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjx1cmxzZXQgeG1sbnM9Imh0dHA6Ly93d3cuc2l0ZW1hcHMub3JnL3NjaGVtYXMvc2l0ZW1hcC8wLjkiPg0KDQogIDx1cmw+DQogICAgPGxvYz5odHRwczovL25vbmVuYW1lODMxLmdpdGh1Yi5pby9qcy1lbGVjdHJpY2FsLWFuZC1wbHVtYmluZy1jb25zdHJ1Y3Rpb24vPC9sb2M+DQogICAgPGxhc3Rtb2Q+MjAyNi0wNS0zMTwvbGFzdG1vZD4NCiAgICA8Y2hhbmdlZnJlcT5tb250aGx5PC9jaGFuZ2VmcmVxPg0KICAgIDxwcmlvcml0eT4xLjA8L3ByaW9yaXR5Pg0KICA8L3VybD4NCg0KICA8dXJsPg0KICAgIDxsb2M+aHR0cHM6Ly9ub25lbmFtZTgzMS5naXRodWIuaW8vanMtZWxlY3RyaWNhbC1hbmQtcGx1bWJpbmctY29uc3RydWN0aW9uLyNzZXJ2aWNlczwvbG9jPg0KICAgIDxsYXN0bW9kPjIwMjYtMDUtMzE8L2xhc3Rtb2Q+DQogICAgPGNoYW5nZWZyZXE+bW9udGhseTwvY2hhbmdlZnJlcT4NCiAgICA8cHJpb3JpdHk+MC44PC9wcmlvcml0eT4NCiAgPC91cmw+DQoNCiAgPHVybD4NCiAgICA8bG9jPmh0dHBzOi8vbm9uZW5hbWU4MzEuZ2l0aHViLmlvL2pzLWVsZWN0cmljYWwtYW5kLXBsdW1iaW5nLWNvbnN0cnVjdGlvbi8jZ2FsbGVyeTwvbG9jPg0KICAgIDxsYXN0bW9kPjIwMjYtMDUtMzE8L2xhc3Rtb2Q+DQogICAgPGNoYW5nZWZyZXE+bW9udGhseTwvY2hhbmdlZnJlcT4NCiAgICA8cHJpb3JpdHk+MC43PC9wcmlvcml0eT4NCiAgPC91cmw+DQoNCiAgPHVybD4NCiAgICA8bG9jPmh0dHBzOi8vbm9uZW5hbWU4MzEuZ2l0aHViLmlvL2pzLWVsZWN0cmljYWwtYW5kLXBsdW1iaW5nLWNvbnN0cnVjdGlvbi8jY29udGFjdDwvbG9jPg0KICAgIDxsYXN0bW9kPjIwMjYtMDUtMzE8L2xhc3Rtb2Q+DQogICAgPGNoYW5nZWZyZXE+bW9udGhseTwvY2hhbmdlZnJlcT4NCiAgICA8cHJpb3JpdHk+MC43PC9wcmlvcml0eT4NCiAgPC91cmw+DQoNCjwvdXJsc2V0Pg==" />
 
   <title>JS 家陞电器水喉工程 | 新山水电维修 · 安装 · 热水器 · 配电箱</title>
 
@@ -52,9 +53,6 @@
 
   <link rel="canonical" href="https://nonename831.github.io/js-electrical-and-plumbing-construction/" />
 
-  <!-- ✅ 新增：让 Google 自动发现 sitemap -->
-  <link rel="sitemap" type="application/xml" href="/js-electrical-and-plumbing-construction/sitemap.xml" />
-
   <meta name="google-site-verification" content="LFYrZg8ibfMT1eEM-_rIbR22dsIOgvVTc3usqFDTiaQ" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -70,9 +68,7 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
           colors: {
             brand: {
               dark: '#0a3d62',
@@ -123,14 +119,12 @@
           "latitude": "1.4927",
           "longitude": "103.7414"
         },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-            "opens": "08:00",
-            "closes": "20:00"
-          }
-        ],
+        "openingHoursSpecification": [{
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "08:00",
+          "closes": "20:00"
+        }],
         "areaServed": [
           {"@type": "City", "name": "Johor Bahru"},
           {"@type": "City", "name": "Skudai"},
@@ -154,6 +148,39 @@
         "publisher": {
           "@id": "https://nonename831.github.io/js-electrical-and-plumbing-construction/#localbusiness"
         }
+      },
+      {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "SiteNavigationElement",
+            "position": 1,
+            "name": "维修项目",
+            "description": "查看我们的电器与水喉维修服务项目",
+            "url": "https://nonename831.github.io/js-electrical-and-plumbing-construction/#services"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 2,
+            "name": "工程案例",
+            "description": "查看我们的实际工程照片",
+            "url": "https://nonename831.github.io/js-electrical-and-plumbing-construction/#gallery"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 3,
+            "name": "联系我们",
+            "description": "获取联系方式与服务区域",
+            "url": "https://nonename831.github.io/js-electrical-and-plumbing-construction/#contact"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 4,
+            "name": "WhatsApp",
+            "description": "立即在线咨询",
+            "url": "https://wa.me/60167639639"
+          }
+        ]
       }
     ]
   }
@@ -169,7 +196,7 @@
     }
   }
   </script>
-  <script type="module" crossorigin src="/js-electrical-and-plumbing-construction/assets/index-DmL3mI0g.js"></script>
+  <script type="module" crossorigin src="/js-electrical-and-plumbing-construction/assets/index-BOHMEIih.js"></script>
 </head>
 
 <body class="bg-[#f7f9fc] text-slate-800 antialiased selection:bg-brand-blue selection:text-white">
