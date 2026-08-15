@@ -69,7 +69,7 @@ const Lightbox: React.FC<LightboxProps> = ({ image, caption, onClose, onPrev, on
         />
         <div className="px-5 py-3 flex items-center justify-between">
           <p className="text-slate-700 font-semibold text-sm">{caption}</p>
-          <button onClick={onClose} className="p-1.5 rounded-full hover:bg-slate-100 text-slate-500 transition-colors">
+          <button onClick={onClose} className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-500 transition-colors">
             <X size={18} />
           </button>
         </div>

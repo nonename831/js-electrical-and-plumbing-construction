@@ -61,10 +61,10 @@ export const Navbar: React.FC = () => {
 
           {/* Right: Language + Call */}
           <div className="hidden md:flex items-center gap-5">
-            <div
+            <button
+              type="button"
               onClick={toggleLanguage}
-              className="relative w-20 h-10 bg-slate-200 rounded-full cursor-pointer p-1 shadow-inner transition-colors hover:bg-slate-300"
-              role="button"
+              className="relative w-20 h-10 bg-slate-200 rounded-full cursor-pointer p-1 shadow-inner transition-colors hover:bg-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
               aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
               title={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
             >
@@ -77,7 +77,7 @@ export const Navbar: React.FC = () => {
                   {language === 'en' ? 'EN' : '中'}
                 </span>
               </div>
-            </div>
+            </button>
             <a
               href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
               onClick={() => trackEvent('phone_click', { source: 'navbar_desktop' })}
@@ -92,7 +92,7 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center gap-3 md:hidden ml-auto">
             <button
               onClick={toggleLanguage}
-              className="px-3 py-1.5 bg-slate-100 rounded-lg text-sm font-bold text-slate-700 active:bg-slate-200 transition-colors border border-slate-200"
+              className="min-h-[44px] px-4 flex items-center justify-center bg-slate-100 rounded-lg text-sm font-bold text-slate-700 active:bg-slate-200 transition-colors border border-slate-200"
             >
               {language === 'en' ? 'EN' : '中'}
             </button>

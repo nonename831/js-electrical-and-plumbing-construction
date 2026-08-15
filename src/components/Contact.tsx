@@ -72,7 +72,7 @@ export const Contact: React.FC = () => {
               <span>{t.contact.chatButton}</span>
             </a>
 
-            <p className="mt-5 text-sm text-gray-400 font-medium flex items-center justify-center gap-2">
+            <p className="mt-5 text-sm text-gray-500 font-medium flex items-center justify-center gap-2">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
               {t.contact.response}
             </p>
