@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Phone, MapPin, MessageCircle } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -6,14 +6,6 @@ import { trackEvent } from '../lib/analytics';
 
 export const Contact: React.FC = () => {
   const { t } = useLanguage();
-
-  // ✅ #1 修复：用 scrollRestoration 替代 pageshow reload
-  // pageshow + reload 会导致从 WhatsApp 返回时整页刷新，体验很差
-  useEffect(() => {
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-  }, []);
 
   return (
     <section id="contact" className="py-10 px-4 max-w-4xl mx-auto scroll-mt-20">
