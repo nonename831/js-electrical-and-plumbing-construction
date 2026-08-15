@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { X, ZoomIn, Zap, Droplets, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { Language } from '../types';
 
 type Category = 'electrical' | 'plumbing';
 
@@ -30,6 +31,7 @@ const IMAGES: GalleryImage[] = [
 interface LightboxProps {
   image: GalleryImage;
   caption: string;
+  language: Language;
   onClose: () => void;
   onPrev: () => void;
   onNext: () => void;
@@ -37,7 +39,7 @@ interface LightboxProps {
   hasNext: boolean;
 }
 
-const Lightbox: React.FC<LightboxProps> = ({ image, caption, onClose, onPrev, onNext, hasPrev, hasNext }) => {
+const Lightbox: React.FC<LightboxProps> = ({ image, caption, language, onClose, onPrev, onNext, hasPrev, hasNext }) => {
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -69,7 +71,11 @@ const Lightbox: React.FC<LightboxProps> = ({ image, caption, onClose, onPrev, on
         />
         <div className="px-5 py-3 flex items-center justify-between">
           <p className="text-slate-700 font-semibold text-sm">{caption}</p>
-          <button onClick={onClose} className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-500 transition-colors">
+          <button
+            onClick={onClose}
+            aria-label={language === 'zh' ? '关闭' : 'Close'}
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-500 transition-colors"
+          >
             <X size={18} />
           </button>
         </div>
@@ -79,6 +85,7 @@ const Lightbox: React.FC<LightboxProps> = ({ image, caption, onClose, onPrev, on
       {hasPrev && (
         <button
           onClick={e => { e.stopPropagation(); onPrev(); }}
+          aria-label={language === 'zh' ? '上一张' : 'Previous image'}
           className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-all"
         >
           <ChevronLeft size={28} />
@@ -87,6 +94,7 @@ const Lightbox: React.FC<LightboxProps> = ({ image, caption, onClose, onPrev, on
       {hasNext && (
         <button
           onClick={e => { e.stopPropagation(); onNext(); }}
+          aria-label={language === 'zh' ? '下一张' : 'Next image'}
           className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-all"
         >
           <ChevronRight size={28} />
@@ -188,6 +196,7 @@ export const Gallery: React.FC = () => {
         <Lightbox
           image={filtered[lightboxIndex]}
           caption={language === 'zh' ? filtered[lightboxIndex].captionZh : filtered[lightboxIndex].captionEn}
+          language={language}
           onClose={closeLightbox}
           onPrev={prevImage}
           onNext={nextImage}

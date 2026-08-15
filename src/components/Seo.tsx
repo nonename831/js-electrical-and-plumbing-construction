@@ -11,6 +11,7 @@ declare global {
 
 const SITE_URL = 'https://nonename831.github.io/js-electrical-and-plumbing-construction';
 const LOGO_URL = `${SITE_URL}/assets/images/logo.png`;
+const OG_IMAGE_URL = `${SITE_URL}/assets/images/og-cover.png`;
 
 export const SEO: React.FC = () => {
     const { t, language } = useLanguage();
@@ -55,15 +56,15 @@ export const SEO: React.FC = () => {
         updateMeta('meta[property="og:locale"]', 'content', ogLocale);
         updateMeta('meta[property="og:site_name"]', 'content', 'JS 家陞电器水喉工程');
         updateMeta('meta[property="og:type"]', 'content', 'website');
-        updateMeta('meta[property="og:image"]', 'content', LOGO_URL);
-        updateMeta('meta[property="og:image:width"]', 'content', '512');
-        updateMeta('meta[property="og:image:height"]', 'content', '512');
+        updateMeta('meta[property="og:image"]', 'content', OG_IMAGE_URL);
+        updateMeta('meta[property="og:image:width"]', 'content', '1200');
+        updateMeta('meta[property="og:image:height"]', 'content', '630');
         updateMeta('meta[property="og:image:alt"]', 'content', t.seo.title);
 
         updateMeta('meta[name="twitter:card"]', 'content', 'summary_large_image');
         updateMeta('meta[name="twitter:title"]', 'content', t.seo.title);
         updateMeta('meta[name="twitter:description"]', 'content', t.seo.description);
-        updateMeta('meta[name="twitter:image"]', 'content', LOGO_URL);
+        updateMeta('meta[name="twitter:image"]', 'content', OG_IMAGE_URL);
 
         const businessName = language === 'zh'
             ? 'JS 家陞电器水喉工程'
