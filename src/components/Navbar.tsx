@@ -98,7 +98,7 @@ export const Navbar: React.FC = () => {
             </button>
             <button
               onClick={toggleMenu}
-              className="text-brand-dark hover:text-brand-blue p-2 transition-colors rounded-full hover:bg-slate-50 focus:outline-none"
+              className="text-brand-dark hover:text-brand-blue p-2 transition-colors rounded-full hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
