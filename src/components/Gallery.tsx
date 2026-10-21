@@ -145,7 +145,7 @@ const Lightbox: React.FC<LightboxProps> = ({ image, caption, labels, onClose, on
           type="button"
           onClick={e => { e.stopPropagation(); onPrev(); }}
           aria-label={labels.prev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-all"
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full shadow-lg transition-all"
         >
           <ChevronLeft size={28} />
         </button>
@@ -155,7 +155,7 @@ const Lightbox: React.FC<LightboxProps> = ({ image, caption, labels, onClose, on
           type="button"
           onClick={e => { e.stopPropagation(); onNext(); }}
           aria-label={labels.next}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-all"
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full shadow-lg transition-all"
         >
           <ChevronRight size={28} />
         </button>
@@ -177,9 +177,9 @@ export const Gallery: React.FC = () => {
   const prevImage = useCallback(() => setLightboxIndex(i => (i !== null && i > 0 ? i - 1 : i)), []);
   const nextImage = useCallback(() => setLightboxIndex(i => (i !== null && i < filtered.length - 1 ? i + 1 : i)), [filtered.length]);
 
-  const tabs: { key: Category; label: string; icon: React.ReactNode }[] = [
-    { key: 'electrical', label: t.gallery.tabElectrical, icon: <Zap size={16} /> },
-    { key: 'plumbing', label: t.gallery.tabPlumbing, icon: <Droplets size={16} /> },
+  const tabs: { key: Category; label: string; shortLabel: string; icon: React.ReactNode }[] = [
+    { key: 'electrical', label: t.gallery.tabElectrical, shortLabel: t.gallery.tabElectricalShort, icon: <Zap size={16} /> },
+    { key: 'plumbing', label: t.gallery.tabPlumbing, shortLabel: t.gallery.tabPlumbingShort, icon: <Droplets size={16} /> },
   ];
 
   return (
@@ -205,13 +205,14 @@ export const Gallery: React.FC = () => {
               type="button"
               aria-pressed={activeCategory === tab.key}
               onClick={() => { setActiveCategory(tab.key); setLightboxIndex(null); }}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold border transition-all duration-150 ${activeCategory === tab.key
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap border transition-all duration-150 ${activeCategory === tab.key
                   ? 'bg-brand-blue text-white border-brand-blue shadow-md shadow-brand-blue/20'
                   : 'bg-white text-slate-600 border-slate-200 hover:border-brand-blue hover:text-brand-blue'
                 }`}
             >
               {tab.icon}
-              {tab.label}
+              <span className="sm:hidden">{tab.shortLabel}</span>
+              <span className="hidden sm:inline">{tab.label}</span>
             </button>
           ))}
         </div>

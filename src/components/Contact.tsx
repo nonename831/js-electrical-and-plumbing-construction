@@ -75,8 +75,8 @@ export const Contact: React.FC = () => {
               <Clock size={16} className="text-brand-blue" />
               {t.contact.hours}
             </p>
-            <p className="mt-2 text-sm text-gray-500 font-medium flex items-center justify-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <p className="mt-2 text-sm text-gray-500 font-medium text-center text-balance">
+              <span className="inline-block w-2 h-2 mr-2 align-middle bg-green-500 rounded-full animate-pulse" />
               {t.contact.response}
             </p>
           </div>

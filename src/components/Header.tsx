@@ -11,16 +11,19 @@ export const Header: React.FC = () => {
     {
       icon: <Award size={16} className="text-amber-400" />,
       label: t.header.badgeExperience,
+      shortLabel: t.header.badgeExperienceShort,
       classes: 'bg-amber-500/10 border-amber-400/20 text-amber-200',
     },
     {
       icon: <Zap size={16} className="text-brand-cyan fill-brand-cyan/20" />,
       label: t.header.badgeElectrical,
+      shortLabel: t.header.badgeElectrical,
       classes: 'bg-blue-500/10 border-blue-400/20 text-blue-200',
     },
     {
       icon: <Droplets size={16} className="text-blue-400 fill-blue-400/20" />,
       label: t.header.badgePlumbing,
+      shortLabel: t.header.badgePlumbing,
       classes: 'bg-cyan-500/10 border-cyan-400/20 text-cyan-200',
     },
   ];
@@ -72,7 +75,8 @@ export const Header: React.FC = () => {
                     style={{ animationDelay: `${300 + i * 180}ms` }}
                   >
                     {badge.icon}
-                    <span>{badge.label}</span>
+                    <span className="sm:hidden">{badge.shortLabel}</span>
+                    <span className="hidden sm:inline">{badge.label}</span>
                   </div>
                 ))}
               </div>

@@ -23,6 +23,7 @@ export const TRANSLATIONS = {
       taglinePrefix: "拥有20年以上经验的",
       taglineSuffix: "维修服务",
       badgeExperience: "20年以上经验",
+      badgeExperienceShort: "20年以上经验",
       badgeElectrical: "电力维修",
       badgePlumbing: "水喉工程",
       callUs: "立即致电"
@@ -44,6 +45,8 @@ export const TRANSLATIONS = {
       subtitle: "真实施工记录，品质有目共睹",
       tabElectrical: "电力工程",
       tabPlumbing: "水喉工程",
+      tabElectricalShort: "电力工程",
+      tabPlumbingShort: "水喉工程",
       empty: "照片即将上传",
       close: "关闭",
       prev: "上一张",
@@ -79,6 +82,7 @@ export const TRANSLATIONS = {
       taglinePrefix: "With over 20 years of experience in",
       taglineSuffix: "Repair Services",
       badgeExperience: "20+ Years Experience",
+      badgeExperienceShort: "20+ Years",
       badgeElectrical: "Electrical",
       badgePlumbing: "Plumbing",
       callUs: "Call Us Today"
@@ -100,6 +104,8 @@ export const TRANSLATIONS = {
       subtitle: "Real work, real quality",
       tabElectrical: "Electrical Works",
       tabPlumbing: "Plumbing Works",
+      tabElectricalShort: "Electrical",
+      tabPlumbingShort: "Plumbing",
       empty: "Photos coming soon",
       close: "Close",
       prev: "Previous image",
