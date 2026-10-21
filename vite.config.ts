@@ -1,11 +1,6 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { SITE_URL, SEO_TEXT, buildJsonLd, buildMetaTags } from './src/siteData';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const escapeHtml = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -58,9 +53,4 @@ export default defineConfig({
     host: '0.0.0.0',
   },
   plugins: [react(), seoPlugin()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
-  },
 });

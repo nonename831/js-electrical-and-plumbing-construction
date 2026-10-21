@@ -94,9 +94,11 @@ export const Navbar: React.FC = () => {
               type="button"
               onClick={toggleLanguage}
               aria-label={t.nav.switchLanguage}
-              className="min-h-[44px] px-4 flex items-center justify-center bg-slate-100 rounded-lg text-sm font-bold text-slate-700 active:bg-slate-200 transition-colors border border-slate-200"
+              className="min-h-[44px] px-3 flex items-center justify-center gap-1 bg-slate-100 rounded-lg text-sm font-bold active:bg-slate-200 transition-colors border border-slate-200 select-none"
             >
-              {language === 'en' ? 'EN' : '中'}
+              <span className={language === 'zh' ? 'text-brand-dark' : 'text-slate-400'}>中</span>
+              <span className="text-slate-300">/</span>
+              <span className={language === 'en' ? 'text-brand-dark' : 'text-slate-400'}>EN</span>
             </button>
             <button
               type="button"

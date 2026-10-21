@@ -15,6 +15,11 @@ interface GalleryImage {
 
 const BASE = `${import.meta.env.BASE_URL}assets/images`;
 
+// Grid uses the 600px `-thumb` variant; the lightbox loads the full image.
+const thumbOf = (src: string) => src.replace(/\.webp$/, '-thumb.webp');
+
+const SWIPE_THRESHOLD = 50;
+
 const IMAGES: GalleryImage[] = [
   { src: `${BASE}/electrical-1.webp`, category: 'electrical', caption: { zh: '安装配电箱', en: 'DB Box Installation' } },
   { src: `${BASE}/electrical-2.webp`, category: 'electrical', caption: { zh: '安装插头', en: 'Socket Installation' } },
@@ -43,6 +48,15 @@ const FOCUSABLE_SELECTOR = 'button, [href], input, select, textarea, [tabindex]:
 const Lightbox: React.FC<LightboxProps> = ({ image, caption, labels, onClose, onPrev, onNext, hasPrev, hasNext }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const touchStartX = useRef<number | null>(null);
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (dx > SWIPE_THRESHOLD && hasPrev) onPrev();
+    if (dx < -SWIPE_THRESHOLD && hasNext) onNext();
+  };
 
   // Runs once per open: move focus in, lock page scroll, and restore focus
   // to the trigger on close. Kept separate from the key handler so that
@@ -98,6 +112,8 @@ const Lightbox: React.FC<LightboxProps> = ({ image, caption, labels, onClose, on
       // Above the sticky navbar and floating WhatsApp button (both z-50)
       className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
       onClick={onClose}
+      onTouchStart={e => { touchStartX.current = e.touches[0].clientX; }}
+      onTouchEnd={handleTouchEnd}
     >
       <div
         className="relative max-w-3xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl"
@@ -212,7 +228,7 @@ export const Gallery: React.FC = () => {
                 {activeCategory === 'electrical' ? <Zap size={32} /> : <Droplets size={32} />}
               </span>
               <img
-                src={img.src}
+                src={thumbOf(img.src)}
                 alt={img.caption[language]}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-150 group-hover:scale-105"

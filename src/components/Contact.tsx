@@ -1,6 +1,6 @@
 import React from 'react';
 import { Phone, MapPin, MessageCircle, Clock } from 'lucide-react';
-import { CONTACT_INFO } from '../constants';
+import { AREAS_SERVED, CONTACT_INFO } from '../siteData';
 import { useLanguage } from '../contexts/LanguageContext';
 import { trackEvent } from '../lib/analytics';
 
@@ -41,6 +41,13 @@ export const Contact: React.FC = () => {
               <h3 className="font-bold text-lg mb-1">{t.contact.serviceArea}</h3>
               <p className="text-gray-600">{t.contact.covering}</p>
               <p className="text-brand-dark font-semibold mt-1">{CONTACT_INFO.area}</p>
+              <ul className="mt-3 flex flex-wrap justify-center gap-1.5">
+                {AREAS_SERVED.filter(area => area !== CONTACT_INFO.area).map(area => (
+                  <li key={area} className="px-2.5 py-1 rounded-full bg-white border border-slate-200 text-xs font-medium text-slate-600">
+                    {area}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 

@@ -5,7 +5,7 @@ import type { Language } from './types';
 
 export const SITE_URL = 'https://nonename831.github.io/js-electrical-and-plumbing-construction/';
 export const LOGO_URL = `${SITE_URL}assets/images/logo.png`;
-export const OG_IMAGE_URL = `${SITE_URL}assets/images/og-cover.png`;
+export const OG_IMAGE_URL = `${SITE_URL}assets/images/og-cover.jpg`;
 
 export const BUSINESS_NAME: Record<Language, string> = {
   zh: 'JS 家陞电器水喉工程',
@@ -22,7 +22,7 @@ export const CONTACT_INFO = {
 
 export const OPENING_HOURS = { opens: '08:00', closes: '20:00' };
 
-const AREAS_SERVED = [
+export const AREAS_SERVED = [
   'Johor Bahru', 'Skudai', 'Mount Austin', 'Bukit Indah',
   'Tebrau', 'Perling', 'Kulai', 'Masai', 'Pasir Gudang',
   'Kempas', 'Permas Jaya', 'Johor Jaya',
@@ -121,7 +121,7 @@ export function buildMetaTags(language: Language): [string, string, string][] {
     ['property', 'og:description', seo.description],
     ['property', 'og:image', OG_IMAGE_URL],
     ['property', 'og:image:secure_url', OG_IMAGE_URL],
-    ['property', 'og:image:type', 'image/png'],
+    ['property', 'og:image:type', 'image/jpeg'],
     ['property', 'og:image:width', '1200'],
     ['property', 'og:image:height', '630'],
     ['property', 'og:image:alt', seo.title],

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Phone, MapPin, Zap, Droplets, Award } from 'lucide-react';
+import { Phone, MapPin, Zap, Droplets, Award, MessageCircle } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import { useLanguage } from '../contexts/LanguageContext';
 import { trackEvent } from '../lib/analytics';
 
 export const Header: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, whatsappUrl } = useLanguage();
 
   const badges = [
     {
@@ -50,7 +50,9 @@ export const Header: React.FC = () => {
 
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
                 {t.header.titleLine1}
-                <span className="block text-brand-cyan mt-1">{t.header.titleLine2}</span>
+                {t.header.titleLine2 && (
+                  <span className="block text-brand-cyan mt-1">{t.header.titleLine2}</span>
+                )}
               </h1>
               <p className="mt-3 text-lg text-blue-100/90 font-medium">
                 {t.header.taglinePrefix}{' '}
@@ -69,6 +71,28 @@ export const Header: React.FC = () => {
                     <span>{badge.label}</span>
                   </div>
                 ))}
+              </div>
+
+              {/* Call / WhatsApp CTAs (below lg the contact card is hidden) */}
+              <div className="mt-8 grid grid-cols-2 gap-3 w-full max-w-sm mx-auto lg:hidden">
+                <a
+                  href={CONTACT_INFO.telUrl}
+                  onClick={() => trackEvent('phone_click', { source: 'header_mobile' })}
+                  className="flex items-center justify-center gap-2 bg-brand-blue text-white py-3.5 rounded-full font-bold shadow-lg active:scale-95 transition-all"
+                >
+                  <Phone size={18} className="fill-current" />
+                  {t.header.callUs}
+                </a>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('whatsapp_click', { source: 'header_mobile' })}
+                  className="flex items-center justify-center gap-2 bg-brand-green text-white py-3.5 rounded-full font-bold shadow-lg active:scale-95 transition-all"
+                >
+                  <MessageCircle size={18} />
+                  WhatsApp
+                </a>
               </div>
             </div>
           </div>
