@@ -1,11 +1,11 @@
 import React from 'react';
-import { Phone, MapPin, MessageCircle } from 'lucide-react';
+import { Phone, MapPin, MessageCircle, Clock } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import { useLanguage } from '../contexts/LanguageContext';
 import { trackEvent } from '../lib/analytics';
 
 export const Contact: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, whatsappUrl } = useLanguage();
 
   return (
     <section id="contact" className="py-10 px-4 max-w-4xl mx-auto scroll-mt-20">
@@ -23,10 +23,10 @@ export const Contact: React.FC = () => {
               <div className="bg-blue-100 p-3 rounded-full text-brand-blue mb-4">
                 <Phone size={24} />
               </div>
-              <h4 className="font-bold text-lg mb-1">{t.contact.callOrWhatsapp}</h4>
+              <h3 className="font-bold text-lg mb-1">{t.contact.callOrWhatsapp}</h3>
               <p className="text-gray-600 mb-2">{CONTACT_INFO.contactName}</p>
               <a
-                href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
+                href={CONTACT_INFO.telUrl}
                 onClick={() => trackEvent('phone_click', { source: 'contact_section' })}
                 className="text-brand-blue font-semibold text-lg hover:underline"
               >
@@ -38,7 +38,7 @@ export const Contact: React.FC = () => {
               <div className="bg-blue-100 p-3 rounded-full text-brand-blue mb-4">
                 <MapPin size={24} />
               </div>
-              <h4 className="font-bold text-lg mb-1">{t.contact.serviceArea}</h4>
+              <h3 className="font-bold text-lg mb-1">{t.contact.serviceArea}</h3>
               <p className="text-gray-600">{t.contact.covering}</p>
               <p className="text-brand-dark font-semibold mt-1">{CONTACT_INFO.area}</p>
             </div>
@@ -46,7 +46,7 @@ export const Contact: React.FC = () => {
 
           <div className="text-center">
             <a
-              href={CONTACT_INFO.whatsappUrl}
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent('whatsapp_click', { source: 'contact_section' })}
@@ -64,7 +64,11 @@ export const Contact: React.FC = () => {
               <span>{t.contact.chatButton}</span>
             </a>
 
-            <p className="mt-5 text-sm text-gray-500 font-medium flex items-center justify-center gap-2">
+            <p className="mt-5 text-sm text-slate-700 font-semibold flex items-center justify-center gap-2">
+              <Clock size={16} className="text-brand-blue" />
+              {t.contact.hours}
+            </p>
+            <p className="mt-2 text-sm text-gray-500 font-medium flex items-center justify-center gap-2">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
               {t.contact.response}
             </p>

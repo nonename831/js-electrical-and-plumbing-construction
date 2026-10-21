@@ -26,20 +26,7 @@ export const Header: React.FC = () => {
   ];
 
   return (
-    <header className="relative bg-slate-900 text-white overflow-hidden">
-      <style>{`
-        @keyframes badgePop {
-          0%   { opacity: 0; transform: translateY(20px) scale(0.7); }
-          60%  { opacity: 1; transform: translateY(-6px) scale(1.08); }
-          80%  { transform: translateY(3px) scale(0.97); }
-          100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .badge-animate {
-          opacity: 0;
-          animation: badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-      `}</style>
-
+    <header className="relative bg-slate-900 text-white overflow-hidden animate-fade-in-up">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-[#0a3d62] to-slate-900 z-0" />
       <div
@@ -55,7 +42,7 @@ export const Header: React.FC = () => {
             <div className="max-w-2xl relative">
               <div className="hidden lg:block absolute -left-6 top-2 bottom-2 w-1 bg-gradient-to-b from-brand-cyan to-transparent rounded-full opacity-50" />
 
-              {/* ✅ Eyebrow label */}
+              {/* Eyebrow label */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-blue-200 text-xs font-bold uppercase tracking-widest mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse" />
                 {CONTACT_INFO.area}
@@ -75,7 +62,7 @@ export const Header: React.FC = () => {
                 {badges.map((badge, i) => (
                   <div
                     key={i}
-                    className={`badge-animate flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold backdrop-blur-sm transition-all duration-150 hover:scale-105 hover:shadow-lg ${badge.classes}`}
+                    className={`animate-badge-pop flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold backdrop-blur-sm transition-all duration-150 hover:scale-105 hover:shadow-lg ${badge.classes}`}
                     style={{ animationDelay: `${300 + i * 180}ms` }}
                   >
                     {badge.icon}
@@ -93,10 +80,10 @@ export const Header: React.FC = () => {
               <div className="relative bg-slate-900/80 rounded-xl p-6 border border-white/10">
                 <div className="flex items-center justify-end gap-2 text-brand-cyan font-bold mb-1 tracking-wide uppercase text-xs">
                   <Phone size={14} />
-                  <span>{t.header.callUs} - Jason</span>
+                  <span>{t.header.callUs} - {CONTACT_INFO.contactName}</span>
                 </div>
                 <a
-                  href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
+                  href={CONTACT_INFO.telUrl}
                   onClick={() => trackEvent('phone_click', { source: 'header_card' })}
                   className="block text-4xl font-bold text-white hover:text-brand-cyan transition-colors duration-150 mb-3 tracking-tight"
                 >

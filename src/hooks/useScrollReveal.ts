@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export function useScrollReveal<T extends HTMLElement>(options?: IntersectionObserverInit) {
+export function useScrollReveal<T extends HTMLElement>(threshold = 0.15) {
   const ref = useRef<T>(null);
   const [visible, setVisible] = useState(false);
 
@@ -15,12 +15,12 @@ export function useScrollReveal<T extends HTMLElement>(options?: IntersectionObs
           observer.disconnect(); // fire once
         }
       },
-      { threshold: 0.15, ...options }
+      { threshold }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [threshold]);
 
   return { ref, visible };
 }

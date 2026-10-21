@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { ServiceItem } from '../types';
 
 // ── Individual service card ─────────────────────────────────────────────────
 interface ServiceCardProps {
-  service: { title: string; description: string; icon: React.ElementType };
+  service: ServiceItem;
   index: number;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
   const { ref, visible } = useScrollReveal<HTMLDivElement>();
-  const [hovered, setHovered] = useState(false);
 
   // Staggered delay per card
   const delay = `${index * 120}ms`;
@@ -18,8 +18,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
   return (
     <div
       ref={ref}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       style={{
         transitionDelay: visible ? delay : '0ms',
       }}
@@ -51,12 +49,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
             bg-slate-50 text-brand-blue
             group-hover:bg-brand-blue group-hover:text-white
             transition-colors duration-300
-            ${hovered ? 'animate-icon-bounce' : ''}
+            group-hover:animate-icon-bounce
           `}
-          style={{
-            // CSS keyframe injected via <style> below
-            animation: hovered ? 'iconBounce 0.5s ease' : 'none',
-          }}
         >
           <service.icon size={32} strokeWidth={1.8} />
         </div>
@@ -66,7 +60,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
           className={`
             absolute inset-0 rounded-2xl border-2 border-brand-cyan/40
             transition-all duration-300
-            ${hovered ? 'scale-125 opacity-100' : 'scale-100 opacity-0'}
+            scale-100 opacity-0 group-hover:scale-125 group-hover:opacity-100
           `}
         />
       </div>
@@ -116,17 +110,6 @@ export const Services: React.FC = () => {
 
   return (
     <section id="services" className="py-10 bg-slate-50 relative scroll-mt-20 overflow-hidden">
-      {/* keyframe for icon bounce */}
-      <style>{`
-        @keyframes iconBounce {
-          0%   { transform: scale(1) rotate(0deg); }
-          25%  { transform: scale(1.2) rotate(-8deg); }
-          50%  { transform: scale(0.95) rotate(6deg); }
-          75%  { transform: scale(1.1) rotate(-3deg); }
-          100% { transform: scale(1) rotate(0deg); }
-        }
-      `}</style>
-
       {/* Subtle dot pattern */}
       <div
         className="absolute inset-0 opacity-[0.03]"

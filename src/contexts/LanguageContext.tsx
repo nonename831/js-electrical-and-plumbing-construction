@@ -1,22 +1,47 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { TRANSLATIONS } from '../constants';
+import { CONTACT_INFO, TRANSLATIONS } from '../constants';
 import { Language } from '../types';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: typeof TRANSLATIONS['zh'];
+  // WhatsApp link with a greeting pre-filled in the current language
+  whatsappUrl: string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('zh'); // Default to Chinese
+const STORAGE_KEY = 'language';
 
+// Storage can throw (private mode, blocked site data) — fall back to zh.
+const readStoredLanguage = (): Language => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored === 'en' || stored === 'zh' ? stored : 'zh';
+  } catch {
+    return 'zh';
+  }
+};
+
+export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [language, setLanguageState] = useState<Language>(readStoredLanguage);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+    } catch {
+      // not persisted; the choice still applies for this visit
+    }
+  };
+
+  const t = TRANSLATIONS[language];
   const value = {
     language,
     setLanguage,
-    t: TRANSLATIONS[language],
+    t,
+    whatsappUrl: `${CONTACT_INFO.whatsappUrl}?text=${encodeURIComponent(t.whatsappMessage)}`,
   };
 
   return (

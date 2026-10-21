@@ -11,45 +11,45 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen(open => !open);
   const toggleLanguage = () => setLanguage(language === 'en' ? 'zh' : 'en');
 
   const navLinks = [
     { name: t.nav.services, href: '#services' },
-    { name: language === 'zh' ? '工程案例' : 'Gallery', href: '#gallery' },
+    { name: t.nav.gallery, href: '#gallery' },
     { name: t.nav.contact, href: '#contact' },
   ];
 
   return (
-    <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled
+    <nav className={`sticky top-0 z-50 w-full transition-all duration-300 animate-fade-in-down ${scrolled
       ? 'bg-white/95 backdrop-blur-md shadow-md py-2 border-b border-gray-200'
       : 'bg-white py-3 shadow-sm border-b border-gray-100'}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
 
-          {/* Left: Logo — ✅ #8 加 width/height 减少 CLS */}
-          <div className="flex items-center gap-3 flex-shrink-0 cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
+          {/* Left: Logo */}
+          <a href="#home" className="flex items-center gap-3 flex-shrink-0 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">
             <img
-              src={`${import.meta.env.BASE_URL}assets/images/logo.png`}
-              alt={language === 'zh' ? 'JS 家陞电器水喉工程 Logo' : 'JS Electrical & Plumbing Logo'}
+              src={`${import.meta.env.BASE_URL}assets/images/logo.webp`}
+              alt={t.nav.logoAlt}
               draggable={false}
-              width="56"
+              width="241"
               height="56"
               className="h-10 md:h-14 w-auto object-contain"
               onError={e => { e.currentTarget.style.display = 'none'; }}
             />
-          </div>
+          </a>
 
           {/* Desktop Center: Links */}
           <div className="hidden md:flex items-center gap-10 absolute left-1/2 transform -translate-x-1/2">
             {navLinks.map(link => (
               <a
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 className="text-gray-600 hover:text-brand-blue font-bold transition-colors text-base uppercase tracking-wide relative group"
               >
@@ -65,8 +65,8 @@ export const Navbar: React.FC = () => {
               type="button"
               onClick={toggleLanguage}
               className="relative w-20 h-10 bg-slate-200 rounded-full cursor-pointer p-1 shadow-inner transition-colors hover:bg-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
-              aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
-              title={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
+              aria-label={t.nav.switchLanguage}
+              title={t.nav.switchLanguage}
             >
               <div className="absolute inset-0 flex justify-between items-center px-3 text-xs font-bold text-gray-500 select-none">
                 <span className={language === 'zh' ? 'opacity-0' : 'opacity-100'}>中</span>
@@ -79,7 +79,7 @@ export const Navbar: React.FC = () => {
               </div>
             </button>
             <a
-              href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
+              href={CONTACT_INFO.telUrl}
               onClick={() => trackEvent('phone_click', { source: 'navbar_desktop' })}
               className="flex items-center gap-2 bg-brand-dark hover:bg-brand-blue text-white px-6 py-2.5 rounded-full text-base font-bold shadow-md transition-all transform hover:scale-105"
             >
@@ -91,15 +91,20 @@ export const Navbar: React.FC = () => {
           {/* Mobile: Language + Hamburger */}
           <div className="flex items-center gap-3 md:hidden ml-auto">
             <button
+              type="button"
               onClick={toggleLanguage}
+              aria-label={t.nav.switchLanguage}
               className="min-h-[44px] px-4 flex items-center justify-center bg-slate-100 rounded-lg text-sm font-bold text-slate-700 active:bg-slate-200 transition-colors border border-slate-200"
             >
               {language === 'en' ? 'EN' : '中'}
             </button>
             <button
+              type="button"
               onClick={toggleMenu}
               className="text-brand-dark hover:text-brand-blue p-2 transition-colors rounded-full hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
-              aria-label="Toggle menu"
+              aria-label={isOpen ? t.nav.closeMenu : t.nav.openMenu}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -108,14 +113,14 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl transition-all duration-300 ease-in-out transform origin-top ${isOpen
+      <div id="mobile-menu" className={`md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl transition-all duration-300 ease-in-out transform origin-top ${isOpen
         ? 'opacity-100 translate-y-0 visible scale-y-100'
         : 'opacity-0 -translate-y-4 invisible scale-y-95 pointer-events-none'}`}
       >
         <div className="flex flex-col p-6 space-y-4">
           {navLinks.map((link, idx) => (
             <a
-              key={link.name}
+              key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
               className={`block text-center text-lg font-bold text-slate-800 hover:text-brand-blue hover:bg-slate-50 py-4 rounded-xl transition-all duration-300 transform ${isOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
@@ -126,7 +131,7 @@ export const Navbar: React.FC = () => {
           ))}
           <div className={`pt-4 mt-2 transition-all duration-500 delay-200 transform ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
             <a
-              href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
+              href={CONTACT_INFO.telUrl}
               onClick={() => trackEvent('phone_click', { source: 'navbar_mobile' })}
               className="flex items-center justify-center gap-3 bg-brand-blue text-white px-4 py-4 rounded-xl text-lg font-bold w-full shadow-lg active:scale-95 transition-all"
             >
