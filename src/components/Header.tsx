@@ -46,15 +46,13 @@ export const Header: React.FC = () => {
           {/* Left: Branding */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-5 flex-1 w-full">
             <div className="max-w-2xl relative">
-              <div className="hidden lg:block absolute -left-6 top-2 bottom-2 w-1 bg-gradient-to-b from-brand-cyan to-transparent rounded-full opacity-50" />
-
               {/* Eyebrow label */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-blue-200 text-xs font-bold uppercase tracking-widest mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse" />
                 {CONTACT_INFO.area}
               </div>
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight text-balance">
                 {t.header.titleLine1}
                 {t.header.titleLine2 && (
                   <span className="block text-brand-cyan mt-1">{t.header.titleLine2}</span>
@@ -66,11 +64,11 @@ export const Header: React.FC = () => {
               </p>
 
               {/* Badges with staggered pop-in */}
-              <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-3">
+              <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
                 {badges.map((badge, i) => (
                   <div
                     key={i}
-                    className={`animate-badge-pop flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold backdrop-blur-sm ${badge.classes}`}
+                    className={`animate-badge-pop flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border text-xs sm:text-sm font-semibold backdrop-blur-sm ${badge.classes}`}
                     style={{ animationDelay: `${300 + i * 180}ms` }}
                   >
                     {badge.icon}

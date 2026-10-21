@@ -190,10 +190,10 @@ export const Gallery: React.FC = () => {
           <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-bold tracking-wider uppercase mb-4">
             {t.gallery.eyebrow}
           </span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight text-balance">
             {t.gallery.title}
           </h2>
-          <p className="mt-2 text-gray-500">
+          <p className="mt-2 text-gray-500 text-balance">
             {t.gallery.subtitle}
           </p>
         </div>

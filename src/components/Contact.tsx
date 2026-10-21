@@ -14,12 +14,12 @@ export const Contact: React.FC = () => {
           <h2 className="text-3xl font-bold text-white mb-2">
             {t.contact.title}
           </h2>
-          <p className="text-blue-200">{t.contact.subtitle}</p>
+          <p className="text-blue-200 text-balance">{t.contact.subtitle}</p>
         </div>
 
         <div className="p-8 md:p-12">
           <div className="grid md:grid-cols-2 gap-8 mb-10">
-            <div className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-xl">
+            <div className="flex flex-col items-center justify-center text-center p-6 bg-gray-50 rounded-xl">
               <div className="bg-blue-100 p-3 rounded-full text-brand-blue mb-4">
                 <Phone size={24} />
               </div>

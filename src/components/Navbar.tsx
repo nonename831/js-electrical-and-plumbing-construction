@@ -46,7 +46,7 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Desktop Center: Links */}
-          <div className="hidden md:flex items-center gap-10 absolute left-1/2 transform -translate-x-1/2">
+          <div className="hidden lg:flex items-center gap-10 absolute left-1/2 transform -translate-x-1/2">
             {navLinks.map(link => (
               <a
                 key={link.href}
@@ -60,7 +60,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Right: Language + Call */}
-          <div className="hidden md:flex items-center gap-5">
+          <div className="hidden lg:flex items-center gap-5">
             <button
               type="button"
               onClick={toggleLanguage}
@@ -89,7 +89,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile: Language + Hamburger */}
-          <div className="flex items-center gap-3 md:hidden ml-auto">
+          <div className="flex items-center gap-3 lg:hidden ml-auto">
             <button
               type="button"
               onClick={toggleLanguage}
@@ -115,7 +115,7 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div id="mobile-menu" className={`md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl transition-all duration-300 ease-in-out transform origin-top ${isOpen
+      <div id="mobile-menu" className={`lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl transition-all duration-300 ease-in-out transform origin-top ${isOpen
         ? 'opacity-100 translate-y-0 visible scale-y-100'
         : 'opacity-0 -translate-y-4 invisible scale-y-95 pointer-events-none'}`}
       >
