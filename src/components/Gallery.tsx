@@ -183,14 +183,14 @@ export const Gallery: React.FC = () => {
   ];
 
   return (
-    <section id="gallery" className="py-16 pb-24 px-4 bg-white scroll-mt-20">
+    <section id="gallery" className="py-16 md:py-24 px-4 bg-white scroll-mt-20">
       <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
 
         <div className="text-center mb-10">
           <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-bold tracking-wider uppercase mb-4">
             {t.gallery.eyebrow}
           </span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
             {t.gallery.title}
           </h2>
           <p className="mt-2 text-gray-500">
@@ -238,7 +238,8 @@ export const Gallery: React.FC = () => {
               <span className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/50 group-focus-visible:bg-brand-dark/50 transition-all duration-150 flex items-center justify-center">
                 <ZoomIn size={28} className="text-white opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-150" />
               </span>
-              <span className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-150 text-left">
+              {/* Always visible on touch screens (no hover); hover/focus reveal on desktop */}
+              <span className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/60 to-transparent md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100 transition-opacity duration-150 text-left">
                 <span className="block text-white text-xs font-semibold truncate" aria-hidden="true">
                   {img.caption[language]}
                 </span>

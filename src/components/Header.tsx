@@ -11,24 +11,30 @@ export const Header: React.FC = () => {
     {
       icon: <Award size={16} className="text-amber-400" />,
       label: t.header.badgeExperience,
-      classes: 'bg-amber-500/10 border-amber-400/20 text-amber-200 hover:bg-amber-500/20',
+      classes: 'bg-amber-500/10 border-amber-400/20 text-amber-200',
     },
     {
       icon: <Zap size={16} className="text-brand-cyan fill-brand-cyan/20" />,
       label: t.header.badgeElectrical,
-      classes: 'bg-blue-500/10 border-blue-400/20 text-blue-200 hover:bg-blue-500/20',
+      classes: 'bg-blue-500/10 border-blue-400/20 text-blue-200',
     },
     {
       icon: <Droplets size={16} className="text-blue-400 fill-blue-400/20" />,
       label: t.header.badgePlumbing,
-      classes: 'bg-cyan-500/10 border-cyan-400/20 text-cyan-200 hover:bg-cyan-500/20',
+      classes: 'bg-cyan-500/10 border-cyan-400/20 text-cyan-200',
     },
   ];
 
   return (
     <header className="relative bg-slate-900 text-white overflow-hidden animate-fade-in-up">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-[#0a3d62] to-slate-900 z-0" />
+      {/* Background: real job photo under the brand gradient */}
+      <img
+        src={`${import.meta.env.BASE_URL}assets/images/hero-bg.webp`}
+        alt=""
+        fetchPriority="high"
+        className="absolute inset-0 w-full h-full object-cover object-[50%_30%] z-0"
+      />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-[#0a3d62]/85 to-slate-900/90 lg:bg-gradient-to-r lg:from-slate-900/95 lg:via-[#0a3d62]/80 lg:to-slate-900/60 z-0" />
       <div
         className="absolute inset-0 opacity-10 z-0"
         style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}
@@ -64,7 +70,7 @@ export const Header: React.FC = () => {
                 {badges.map((badge, i) => (
                   <div
                     key={i}
-                    className={`animate-badge-pop flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold backdrop-blur-sm transition-all duration-150 hover:scale-105 hover:shadow-lg ${badge.classes}`}
+                    className={`animate-badge-pop flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold backdrop-blur-sm ${badge.classes}`}
                     style={{ animationDelay: `${300 + i * 180}ms` }}
                   >
                     {badge.icon}

@@ -37,32 +37,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
       {/* Bottom accent line */}
       <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-brand-cyan transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
-      {/* ── Icon wrapper with animation ── */}
-      <div className="mb-6 relative">
-        {/* Glow blob */}
-        <div className="absolute inset-0 bg-brand-blue/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        {/* Icon circle */}
-        <div
-          className={`
-            relative p-4 rounded-2xl
-            bg-slate-50 text-brand-blue
-            group-hover:bg-brand-blue group-hover:text-white
-            transition-colors duration-300
-            group-hover:animate-icon-bounce
-          `}
-        >
-          <service.icon size={32} strokeWidth={1.8} />
-        </div>
-
-        {/* Orbiting ring — appears on hover */}
-        <div
-          className={`
-            absolute inset-0 rounded-2xl border-2 border-brand-cyan/40
-            transition-all duration-300
-            scale-100 opacity-0 group-hover:scale-125 group-hover:opacity-100
-          `}
-        />
+      {/* Icon */}
+      <div className="mb-6 p-4 rounded-2xl bg-slate-50 text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
+        <service.icon size={32} strokeWidth={1.8} />
       </div>
 
       {/* Text */}
@@ -86,7 +63,7 @@ const SectionHeading: React.FC = () => {
     <div
       ref={ref}
       className={`
-        text-center max-w-3xl mx-auto mb-16
+        text-center max-w-3xl mx-auto mb-12
         transition-all duration-700
         ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
       `}
@@ -94,7 +71,7 @@ const SectionHeading: React.FC = () => {
       <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-bold tracking-wider uppercase mb-4">
         {t.services.sectionTitle}
       </span>
-      <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">
+      <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
         {t.services.mainTitle}
       </h2>
       <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
@@ -109,7 +86,7 @@ export const Services: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="services" className="py-10 bg-slate-50 relative scroll-mt-20 overflow-hidden">
+    <section id="services" className="py-16 md:py-24 bg-slate-50 relative scroll-mt-20 overflow-hidden">
       {/* Subtle dot pattern */}
       <div
         className="absolute inset-0 opacity-[0.03]"

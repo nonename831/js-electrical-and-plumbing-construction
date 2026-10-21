@@ -8,7 +8,7 @@ export const Contact: React.FC = () => {
   const { t, whatsappUrl } = useLanguage();
 
   return (
-    <section id="contact" className="py-10 px-4 max-w-4xl mx-auto scroll-mt-20">
+    <section id="contact" className="py-16 md:py-24 px-4 max-w-4xl mx-auto scroll-mt-20">
       <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
         <div className="bg-brand-dark p-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-2">

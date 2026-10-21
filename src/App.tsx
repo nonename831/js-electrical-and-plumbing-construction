@@ -51,8 +51,8 @@ const AppContent: React.FC = () => {
         className="fixed bottom-6 right-6 z-50 group flex items-center justify-center"
         aria-label={t.floating.ariaLabel}
       >
-        <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping group-hover:animate-none" />
-        <div className="relative bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#128C7E] hover:scale-110 transition-all duration-300 flex items-center gap-2 border-4 border-white/20">
+        <span className="absolute inline-flex h-full w-full rounded-full bg-brand-green/60 animate-ping-few" />
+        <div className="relative bg-brand-green text-white p-4 rounded-full shadow-2xl hover:bg-brand-greenHover hover:scale-110 transition-all duration-300 flex items-center gap-2 border-4 border-white/20">
           <MessageCircle size={28} className="fill-white text-white" />
           <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 ease-in-out whitespace-nowrap font-bold text-lg">
             {t.floating.chat}
