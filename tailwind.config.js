@@ -13,9 +13,12 @@ export default {
           dark: '#0a3d62',
           // blue/green darkened from #1e88e5/#25D366 so white text meets WCAG contrast
           blue: '#1976d2',
+          // small blue text on light tints (section eyebrow pills): 5:1 on the pill
+          blueText: '#1565c0',
           cyan: '#26c6da',
-          green: '#1a9e4b',
-          greenHover: '#168a41',
+          // 4.6:1 with white text, so 16px button labels pass AA
+          green: '#168640',
+          greenHover: '#157d3b',
         },
       },
       keyframes: {

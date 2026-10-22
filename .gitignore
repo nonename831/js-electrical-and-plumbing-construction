@@ -122,3 +122,5 @@ dist
 
 # Claude Code local config/plugins (not part of the project)
 .claude/
+# Temporary SSR bundle used by scripts/prerender.mjs
+dist-ssr

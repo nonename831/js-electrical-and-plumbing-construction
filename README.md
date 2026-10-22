@@ -22,7 +22,7 @@ npm run dev
 ```bash
 npm run lint       # ESLint 检查
 npm run typecheck  # TypeScript 类型检查
-npm run build      # 类型检查 + 构建，产物输出到 dist/
+npm run build      # 类型检查 + 构建 + 预渲染（把页面内容写进 dist/index.html），产物输出到 dist/
 npm run preview    # 本地预览构建产物
 npm run deploy     # 手动构建并发布到 GitHub Pages (gh-pages 分支)
 ```
@@ -33,12 +33,14 @@ push 到 `main` 时，GitHub Actions（`.github/workflows/deploy.yml`）会自�
 
 ```
 public/          静态资源，原样复制到构建产物（图片、favicon、robots.txt、404 页面）
+scripts/prerender.mjs  构建后把预渲染的 HTML 写进 dist/index.html
 src/
   components/    页面区块组件
   contexts/      语言切换 Context
   hooks/         共享 hooks
   App.tsx        应用根组件
-  main.tsx       入口文件
+  main.tsx       浏览器入口（有预渲染内容时 hydrate，开发模式直接渲染）
+  entry-server.tsx  构建时预渲染用的入口
   siteData.ts    商家信息与 SEO 数据（唯一来源：构建时生成 <head> 标签和 sitemap.xml，切换语言时由 Seo.tsx 复用）
   constants.tsx  双语界面文案
   types.ts       共享类型定义

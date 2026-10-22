@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 text-center text-sm text-gray-400">
+      <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 text-center text-sm text-gray-300">
         &copy; {YEAR} JS Electrical & Plumbing Construction. <span className="whitespace-nowrap">{t.footer.rights}</span>
       </div>
     </footer>

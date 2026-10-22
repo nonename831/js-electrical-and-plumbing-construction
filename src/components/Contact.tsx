@@ -18,7 +18,7 @@ export const Contact: React.FC = () => {
 
         {/* Left: headline + actions */}
         <div className="text-center lg:text-left">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-bold tracking-wider uppercase mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blueText text-sm font-bold tracking-wider uppercase mb-4">
             {t.contact.title}
           </span>
           <h2 className="text-[1.4rem] min-[380px]:text-2xl md:text-4xl lg:text-[2rem] xl:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight text-balance">

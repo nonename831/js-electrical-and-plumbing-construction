@@ -3,6 +3,7 @@ import { X, ZoomIn, Zap, Droplets, ChevronLeft, ChevronRight } from 'lucide-reac
 import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Language } from '../types';
+import { photoSrcSet, photoUrl } from '../lib/images';
 
 export type Category = 'electrical' | 'plumbing';
 
@@ -20,29 +21,34 @@ const TILE_CLASSES = [
   'col-span-2 aspect-[2/1] md:col-span-1 md:aspect-auto',
 ];
 
+// Rendered width of each tile position (matches TILE_CLASSES; desktop grid is max-w-6xl)
+const TILE_SIZES = [
+  '(min-width: 768px) 576px, 100vw',
+  '(min-width: 768px) 576px, 50vw',
+  '(min-width: 768px) 288px, 50vw',
+  '(min-width: 768px) 288px, 100vw',
+];
+
 interface GalleryImage {
-  src: string;
+  name: string; // file base name, see lib/images.ts
   category: Category;
   caption: Record<Language, string>;
   objectPosition?: string;
 }
 
-const BASE = `${import.meta.env.BASE_URL}assets/images`;
 
-// Grid uses the 600px `-thumb` variant; the lightbox loads the full image.
-const thumbOf = (src: string) => src.replace(/\.webp$/, '-thumb.webp');
 
 const SWIPE_THRESHOLD = 50;
 
 const IMAGES: GalleryImage[] = [
-  { src: `${BASE}/electrical-1.webp`, category: 'electrical', caption: { zh: '安装配电箱', en: 'DB Box Installation' } },
-  { src: `${BASE}/electrical-2.webp`, category: 'electrical', caption: { zh: '安装插头', en: 'Socket Installation' } },
-  { src: `${BASE}/electrical-3.webp`, category: 'electrical', caption: { zh: '安装灯具', en: 'Light Fixture Installation' }, objectPosition: 'top' },
-  { src: `${BASE}/electrical-4.webp`, category: 'electrical', caption: { zh: '安装风扇', en: 'Ceiling Fan Installation' }, objectPosition: '50% 10%' },
-  { src: `${BASE}/plumbing-1.webp`, category: 'plumbing', caption: { zh: '安装热水器', en: 'Water Heater Installation' }, objectPosition: '50% 20%' },
-  { src: `${BASE}/plumbing-2.webp`, category: 'plumbing', caption: { zh: '水管维修', en: 'Pipe Repair' }, objectPosition: '50% 10%' },
-  { src: `${BASE}/plumbing-3.webp`, category: 'plumbing', caption: { zh: '安装马桶', en: 'Toilet Installation' }, objectPosition: 'top' },
-  { src: `${BASE}/plumbing-4.webp`, category: 'plumbing', caption: { zh: '安装洗手盆', en: 'Basin Installation' }, objectPosition: 'top' },
+  { name: 'electrical-1', category: 'electrical', caption: { zh: '安装配电箱', en: 'DB Box Installation' } },
+  { name: 'electrical-2', category: 'electrical', caption: { zh: '安装插头', en: 'Socket Installation' } },
+  { name: 'electrical-3', category: 'electrical', caption: { zh: '安装灯具', en: 'Light Fixture Installation' }, objectPosition: 'top' },
+  { name: 'electrical-4', category: 'electrical', caption: { zh: '安装风扇', en: 'Ceiling Fan Installation' }, objectPosition: '50% 10%' },
+  { name: 'plumbing-1', category: 'plumbing', caption: { zh: '安装热水器', en: 'Water Heater Installation' }, objectPosition: '50% 20%' },
+  { name: 'plumbing-2', category: 'plumbing', caption: { zh: '水管维修', en: 'Pipe Repair' }, objectPosition: '50% 10%' },
+  { name: 'plumbing-3', category: 'plumbing', caption: { zh: '安装马桶', en: 'Toilet Installation' }, objectPosition: 'top' },
+  { name: 'plumbing-4', category: 'plumbing', caption: { zh: '安装洗手盆', en: 'Basin Installation' }, objectPosition: 'top' },
 ];
 
 // ─── Lightbox ────────────────────────────────────────────────────────────────
@@ -134,7 +140,7 @@ const Lightbox: React.FC<LightboxProps> = ({ image, caption, labels, onClose, on
         onClick={e => e.stopPropagation()}
       >
         <img
-          src={image.src}
+          src={photoUrl(image.name)}
           alt={caption}
           className="w-full object-cover max-h-[70vh]"
           style={{ objectPosition: image.objectPosition ?? 'center' }}
@@ -210,7 +216,7 @@ export const Gallery: React.FC = () => {
       <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
 
         <div className="text-center mb-10">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-bold tracking-wider uppercase mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blueText text-sm font-bold tracking-wider uppercase mb-4">
             {t.gallery.eyebrow}
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight text-balance">
@@ -243,7 +249,7 @@ export const Gallery: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 md:auto-rows-[220px] gap-3 md:gap-4">
           {filtered.map((img, i) => (
             <button
-              key={img.src}
+              key={img.name}
               type="button"
               onClick={() => setLightboxIndex(i)}
               className={`group relative block w-full ${TILE_CLASSES[i] ?? 'aspect-square'} rounded-2xl overflow-hidden cursor-pointer bg-slate-100 shadow-sm hover:shadow-lg transition-all duration-150 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue`}
@@ -252,7 +258,9 @@ export const Gallery: React.FC = () => {
                 {activeCategory === 'electrical' ? <Zap size={32} /> : <Droplets size={32} />}
               </span>
               <img
-                src={i === 0 ? img.src : thumbOf(img.src)}
+                src={`${import.meta.env.BASE_URL}assets/images/${img.name}-thumb.webp`}
+                srcSet={photoSrcSet(img.name, i === 0)}
+                sizes={TILE_SIZES[i] ?? '50vw'}
                 alt={img.caption[language]}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-150 group-hover:scale-105"

@@ -59,6 +59,8 @@ export const Navbar: React.FC = () => {
           <a href="#home" className="flex items-center gap-3 flex-shrink-0 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">
             <img
               src={`${import.meta.env.BASE_URL}assets/images/logo.webp`}
+              srcSet={`${import.meta.env.BASE_URL}assets/images/logo-sm.webp 344w, ${import.meta.env.BASE_URL}assets/images/logo.webp 482w`}
+              sizes="(min-width: 768px) 241px, 172px"
               alt={t.nav.logoAlt}
               draggable={false}
               width="241"
@@ -92,14 +94,14 @@ export const Navbar: React.FC = () => {
               type="button"
               onClick={toggleLanguage}
               className="relative w-20 h-10 bg-slate-200 rounded-full cursor-pointer p-1 shadow-inner transition-colors hover:bg-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
-              aria-label={t.nav.switchLanguage}
               title={t.nav.switchLanguage}
             >
-              <div className="absolute inset-0 flex justify-between items-center px-3 text-xs font-bold text-gray-500 select-none">
+              <span className="sr-only">{t.nav.switchLanguage}</span>
+              <div aria-hidden="true" className="absolute inset-0 flex justify-between items-center px-3 text-xs font-bold text-gray-500 select-none">
                 <span className={language === 'zh' ? 'opacity-0' : 'opacity-100'}>中</span>
                 <span className={language === 'en' ? 'opacity-0' : 'opacity-100'}>EN</span>
               </div>
-              <div className={`relative z-10 bg-white w-8 h-8 rounded-full shadow-md transform transition-transform duration-300 flex items-center justify-center ${language === 'en' ? 'translate-x-10' : 'translate-x-0'}`}>
+              <div aria-hidden="true" className={`relative z-10 bg-white w-8 h-8 rounded-full shadow-md transform transition-transform duration-300 flex items-center justify-center ${language === 'en' ? 'translate-x-10' : 'translate-x-0'}`}>
                 <span className="text-xs font-extrabold text-brand-dark select-none">
                   {language === 'en' ? 'EN' : '中'}
                 </span>
@@ -120,12 +122,12 @@ export const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={toggleLanguage}
-              aria-label={t.nav.switchLanguage}
               className="min-h-[44px] px-3 flex items-center justify-center gap-1 bg-slate-100 rounded-lg text-sm font-bold active:bg-slate-200 transition-colors border border-slate-200 select-none"
             >
-              <span className={language === 'zh' ? 'text-brand-dark' : 'text-slate-500'}>中</span>
-              <span className="text-slate-300">/</span>
-              <span className={language === 'en' ? 'text-brand-dark' : 'text-slate-500'}>EN</span>
+              <span className="sr-only">{t.nav.switchLanguage}</span>
+              <span aria-hidden="true" className={language === 'zh' ? 'text-brand-dark' : 'text-slate-600'}>中</span>
+              <span aria-hidden="true" className="text-slate-300">/</span>
+              <span aria-hidden="true" className={language === 'en' ? 'text-brand-dark' : 'text-slate-600'}>EN</span>
             </button>
             <button
               type="button"

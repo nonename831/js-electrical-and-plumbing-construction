@@ -4,15 +4,14 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { ServiceItem } from '../types';
 import { Category, showGalleryCategory } from './Gallery';
-
-const IMG = `${import.meta.env.BASE_URL}assets/images`;
+import { photoSrcSet } from '../lib/images';
 
 // Real job photo + gallery tab for each service, by position in TRANSLATIONS.services.items
-const SERVICE_MEDIA: { image: string; position?: string; category: Category }[] = [
-  { image: `${IMG}/electrical-1-thumb.webp`, category: 'electrical' },
-  { image: `${IMG}/electrical-4-thumb.webp`, position: '50% 5%', category: 'electrical' },
-  { image: `${IMG}/plumbing-2-thumb.webp`, position: '50% 15%', category: 'plumbing' },
-  { image: `${IMG}/plumbing-3-thumb.webp`, position: '50% 20%', category: 'plumbing' },
+const SERVICE_MEDIA: { photo: string; position?: string; category: Category }[] = [
+  { photo: 'electrical-1', category: 'electrical' },
+  { photo: 'electrical-4', position: '50% 5%', category: 'electrical' },
+  { photo: 'plumbing-2', position: '50% 15%', category: 'plumbing' },
+  { photo: 'plumbing-3', position: '50% 20%', category: 'plumbing' },
 ];
 
 // ── Individual service card ─────────────────────────────────────────────────
@@ -55,7 +54,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, viewWorkLabel
       {/* Photo: left strip on phones, top banner from md */}
       <div className="relative w-28 shrink-0 md:w-full md:aspect-[2/1] overflow-hidden bg-slate-100">
         <img
-          src={media.image}
+          src={`${import.meta.env.BASE_URL}assets/images/${media.photo}-thumb.webp`}
+          srcSet={photoSrcSet(media.photo)}
+          sizes="(min-width: 768px) 490px, 112px"
           alt=""
           loading="lazy"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -104,7 +105,7 @@ const SectionHeading: React.FC = () => {
         ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
       `}
     >
-      <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-bold tracking-wider uppercase mb-4">
+      <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blueText text-sm font-bold tracking-wider uppercase mb-4">
         {t.services.sectionTitle}
       </span>
       <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight text-balance">

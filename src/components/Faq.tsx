@@ -11,7 +11,7 @@ export const Faq: React.FC = () => {
     <section id="faq" className="bg-white px-4 pb-16 md:pb-24 scroll-mt-20">
       <div className="max-w-6xl mx-auto border-t border-slate-100 pt-16 md:pt-24 grid lg:grid-cols-[1fr_1.6fr] gap-10 lg:gap-16">
         <div className="text-center lg:text-left">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-bold tracking-wider uppercase mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blueText text-sm font-bold tracking-wider uppercase mb-4">
             {t.faq.eyebrow}
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight text-balance">{t.faq.title}</h2>

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { CONTACT_INFO, TRANSLATIONS } from '../constants';
 import { Language } from '../types';
 
@@ -25,7 +25,13 @@ const readStoredLanguage = (): Language => {
 };
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>(readStoredLanguage);
+  // Start in zh to match the prerendered HTML, then apply a remembered choice after hydration
+  const [language, setLanguageState] = useState<Language>('zh');
+
+  useEffect(() => {
+    const stored = readStoredLanguage();
+    if (stored !== 'zh') setLanguageState(stored);
+  }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
