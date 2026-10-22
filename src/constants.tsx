@@ -13,6 +13,7 @@ export const TRANSLATIONS = {
     nav: {
       services: "维修项目",
       gallery: "工程案例",
+      faq: "常见问题",
       contact: "联系我们",
       openMenu: "打开菜单",
       closeMenu: "关闭菜单",
@@ -103,6 +104,7 @@ export const TRANSLATIONS = {
     nav: {
       services: "Services",
       gallery: "Gallery",
+      faq: "FAQ",
       contact: "Contact",
       openMenu: "Open menu",
       closeMenu: "Close menu",

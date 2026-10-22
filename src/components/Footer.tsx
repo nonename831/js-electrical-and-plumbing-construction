@@ -14,6 +14,7 @@ export const Footer: React.FC = () => {
   const links = [
     { name: t.nav.services, href: '#services' },
     { name: t.nav.gallery, href: '#gallery' },
+    { name: t.nav.faq, href: '#faq' },
     { name: t.nav.contact, href: '#contact' },
   ];
 

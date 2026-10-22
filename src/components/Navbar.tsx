@@ -5,7 +5,7 @@ import { CONTACT_INFO } from '../constants';
 import { trackEvent } from '../lib/analytics';
 import { copyPhoneOnDesktop } from '../lib/phone';
 
-const SECTION_IDS = ['services', 'gallery', 'contact'];
+const SECTION_IDS = ['services', 'gallery', 'faq', 'contact'];
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,6 +43,7 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { name: t.nav.services, href: '#services' },
     { name: t.nav.gallery, href: '#gallery' },
+    { name: t.nav.faq, href: '#faq' },
     { name: t.nav.contact, href: '#contact' },
   ];
 
@@ -68,7 +69,7 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Desktop Center: Links */}
-          <div className="hidden lg:flex items-center gap-10 absolute left-1/2 transform -translate-x-1/2">
+          <div className="hidden lg:flex flex-1 justify-center items-center gap-6 px-4 xl:flex-none xl:px-0 xl:gap-10 xl:absolute xl:left-1/2 xl:-translate-x-1/2">
             {navLinks.map(link => {
               const active = activeSection === link.href.slice(1);
               return (
