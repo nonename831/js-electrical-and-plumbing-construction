@@ -82,7 +82,7 @@ export const TRANSLATIONS = {
     },
     whatsappMessage: "你好，我想咨询电工/水喉服务。",
     phoneCopy: { copied: "号码已复制：", fallback: "请拨打 " },
-    footer: { rights: "版权所有。" },
+    footer: { rights: "版权所有。", links: "快速链接", contact: "联系方式" },
     floating: { chat: "立即咨询", ariaLabel: "WhatsApp 咨询" }
   },
   en: {
@@ -159,7 +159,7 @@ export const TRANSLATIONS = {
     },
     whatsappMessage: "Hi, I'd like to enquire about electrical/plumbing services.",
     phoneCopy: { copied: "Number copied: ", fallback: "Please call " },
-    footer: { rights: "All rights reserved." },
+    footer: { rights: "All rights reserved.", links: "Quick links", contact: "Contact" },
     floating: { chat: "Chat Now", ariaLabel: "Chat on WhatsApp" }
   }
 };
