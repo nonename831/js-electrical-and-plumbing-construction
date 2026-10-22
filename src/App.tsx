@@ -7,6 +7,7 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { SEO } from './components/Seo';
 import { TrustStrip } from './components/TrustStrip';
+import { ProcessSteps } from './components/ProcessSteps';
 import { MobileActionBar } from './components/MobileActionBar';
 import { Toast } from './components/Toast';
 import { MessageCircle } from 'lucide-react';
@@ -40,6 +41,7 @@ const AppContent: React.FC = () => {
 
       <main className="flex-grow">
         <Services />
+        <ProcessSteps />
         <Gallery />
         <AnimatedContact />
       </main>

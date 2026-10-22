@@ -47,6 +47,16 @@ export const TRANSLATIONS = {
         { title: "卫浴设备安装", description: "安装马桶、洗手盆 (Basin)、热水器 (Water Heater)，确保安装稳固且不漏水。", icon: Droplets }
       ] as ServiceItem[]
     },
+    process: {
+      eyebrow: "服务流程",
+      title: "怎么找我们维修？",
+      steps: [
+        { title: "WhatsApp 联系", text: "说明问题，可以附上照片" },
+        { title: "报价 + 约时间", text: "确认价格和上门时间" },
+        { title: "上门施工", text: "准时上门，完工后测试" }
+      ],
+      cta: "WhatsApp 联系我们"
+    },
     gallery: {
       eyebrow: "工程案例",
       title: "实际工程照片",
@@ -113,6 +123,16 @@ export const TRANSLATIONS = {
         { title: "Plumbing & Piping Works", description: "Complete plumbing solutions: Leak detection, pipe installation/re-piping, poly pipe replacement, and water tank (Tangki) services.", icon: Wrench },
         { title: "Sanitary & Bathroom Installation", description: "Installation of toilets (WC), wash basins, bidets, sinks, and instant/storage water heaters with safety checks.", icon: Droplets }
       ] as ServiceItem[]
+    },
+    process: {
+      eyebrow: "How It Works",
+      title: "How to get it fixed",
+      steps: [
+        { title: "WhatsApp us", text: "Describe the problem, photos welcome" },
+        { title: "Quote + schedule", text: "Agree on price and visit time" },
+        { title: "On-site job", text: "We arrive on time and test after" }
+      ],
+      cta: "Chat on WhatsApp"
     },
     gallery: {
       eyebrow: "Our Work",
