@@ -187,7 +187,7 @@ const Lightbox: React.FC<LightboxProps> = ({ image, caption, labels, onClose, on
 // ─── Main component ───────────────────────────────────────────────────────────
 export const Gallery: React.FC = () => {
   const { language, t } = useLanguage();
-  const [activeCategory, setActiveCategory] = useState<Category>('electrical');
+  const [activeCategory, setActiveCategory] = useState<Category>('plumbing');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const { ref, visible } = useScrollReveal<HTMLDivElement>();
 
@@ -207,8 +207,8 @@ export const Gallery: React.FC = () => {
   const nextImage = useCallback(() => setLightboxIndex(i => (i !== null && i < filtered.length - 1 ? i + 1 : i)), [filtered.length]);
 
   const tabs: { key: Category; label: string; shortLabel: string; icon: React.ReactNode }[] = [
-    { key: 'electrical', label: t.gallery.tabElectrical, shortLabel: t.gallery.tabElectricalShort, icon: <Zap size={16} /> },
     { key: 'plumbing', label: t.gallery.tabPlumbing, shortLabel: t.gallery.tabPlumbingShort, icon: <Droplets size={16} /> },
+    { key: 'electrical', label: t.gallery.tabElectrical, shortLabel: t.gallery.tabElectricalShort, icon: <Zap size={16} /> },
   ];
 
   return (

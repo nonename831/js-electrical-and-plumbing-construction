@@ -16,16 +16,16 @@ export const Header: React.FC = () => {
       classes: 'bg-amber-500/10 border-amber-400/20 text-amber-200',
     },
     {
-      icon: <Zap size={16} className="text-brand-cyan fill-brand-cyan/20" />,
-      label: t.header.badgeElectrical,
-      shortLabel: t.header.badgeElectrical,
-      classes: 'bg-blue-500/10 border-blue-400/20 text-blue-200',
-    },
-    {
       icon: <Droplets size={16} className="text-blue-400 fill-blue-400/20" />,
       label: t.header.badgePlumbing,
       shortLabel: t.header.badgePlumbing,
       classes: 'bg-cyan-500/10 border-cyan-400/20 text-cyan-200',
+    },
+    {
+      icon: <Zap size={16} className="text-brand-cyan fill-brand-cyan/20" />,
+      label: t.header.badgeElectrical,
+      shortLabel: t.header.badgeElectrical,
+      classes: 'bg-blue-500/10 border-blue-400/20 text-blue-200',
     },
   ];
 

@@ -8,10 +8,10 @@ import { photoSrcSet } from '../lib/images';
 
 // Real job photo + gallery tab for each service, by position in TRANSLATIONS.services.items
 const SERVICE_MEDIA: { photo: string; position?: string; category: Category }[] = [
-  { photo: 'electrical-1', category: 'electrical' },
-  { photo: 'electrical-4', position: '50% 5%', category: 'electrical' },
   { photo: 'plumbing-2', position: '50% 15%', category: 'plumbing' },
   { photo: 'plumbing-3', position: '50% 20%', category: 'plumbing' },
+  { photo: 'electrical-1', category: 'electrical' },
+  { photo: 'electrical-4', position: '50% 5%', category: 'electrical' },
 ];
 
 // ── Individual service card ─────────────────────────────────────────────────

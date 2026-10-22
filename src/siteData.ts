@@ -34,14 +34,14 @@ export const SEO_TEXT: Record<Language, { title: string; description: string; ke
   zh: {
     title: 'JS 家陞电器水喉工程 | 新山电工 · 新山水喉 · JB电工水喉维修',
     description: '新山电工、新山水喉师傅，20年经验。电器安装、水管漏水修复、热水器安装、配电箱(DB Box)升级，JB做电做水喉都找我们。服务 Skudai、Mount Austin、Bukit Indah、Perling 等 JB 地区。立即联系 Jason：+6016-763 9639',
-    keywords: '新山电工, 新山水喉, JB电工, JB做电, 新山水电工, 新山维修, 柔佛新山拉电, 新山装修拉电, 水喉佬 Johor, 热水器安装, 安装热水器, 换水箱, 跳电维修, JB 跳电维修, 水管漏水, 厕所漏水, 厨房塞, 配电箱升级, 家陞电器, JB Electrician, JB Plumber, Johor Bahru Electrician, water heater installation JB, power trip JB, water leak repair, DB box upgrade, Skudai electrician, Mount Austin plumber, Bukit Indah, Perling, Kulai, Taman Daya, Austin Heights, Eco Botanic, JS Electrical',
+    keywords: '新山电工, 新山水喉, JB电工, JB做电, 新山水电工, 新山维修, 柔佛新山拉电, 新山装修拉电, 水喉佬 Johor, 热水器安装, 安装热水器, 换水箱, 跳电维修, JB 跳电维修, 水管漏水, 厕所漏水, 配电箱升级, 家陞电器, JB Electrician, JB Plumber, Johor Bahru Electrician, water heater installation JB, power trip JB, water leak repair, DB box upgrade, Skudai electrician, Mount Austin plumber, Bukit Indah, Perling, Kulai, Taman Daya, Austin Heights, Eco Botanic, JS Electrical',
     locale: 'zh_MY',
     htmlLang: 'zh-MY',
   },
   en: {
     title: 'JS Electrical & Plumbing | Electrician & Plumber in Johor Bahru',
     description: 'Trusted Electrician & Plumber in Johor Bahru (JB). 20+ years fixing wiring, water leaks, and installing water heaters/fans. Serving Skudai, Mount Austin, Bukit Indah, Perling, Kempas, Permas Jaya & surrounding areas. Call Jason now.',
-    keywords: 'Johor Bahru Electrician, JB Plumber, Electrical Wiring JB, Water Heater Installation, JS Electrical, Skudai Electrician, Mount Austin Plumber, Toilet Repair JB, Emergency Electrician Johor, Taman Daya, Austin Heights, Eco Botanic',
+    keywords: 'Johor Bahru Electrician, JB Plumber, Electrical Wiring JB, Water Heater Installation, JS Electrical, Skudai Electrician, Mount Austin Plumber, Toilet Repair JB, Taman Daya, Austin Heights, Eco Botanic',
     locale: 'en_MY',
     htmlLang: 'en-MY',
   },

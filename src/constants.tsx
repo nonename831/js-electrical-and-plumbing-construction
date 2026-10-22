@@ -44,10 +44,10 @@ export const TRANSLATIONS = {
       mainTitle: "住家与店屋维修安装",
       description: "身为新山电工与水喉团队，我们承接所有住家与店屋的电力维修和水喉工程，提供安全、可靠的解决方案。",
       items: [
-        { title: "电力维修", description: "若电箱容量不足，我们提供更换与升级配电箱 (DB Box) 服务。", icon: Zap },
-        { title: "电器配件安装", description: "安装各类风扇、插头 (Socket)、更换开关 (Switch)、以及住家与店屋的灯具照明安装。", icon: Lightbulb },
         { title: "水喉管道工程", description: "全屋基本水喉维修，走/安装水管 (Piping)，更换蓄水箱 (Tangki)，以及解决水压和漏水问题。", icon: Wrench },
-        { title: "卫浴设备安装", description: "安装马桶、洗手盆 (Basin)、热水器 (Water Heater)，确保安装稳固且不漏水。", icon: Droplets }
+        { title: "卫浴设备安装", description: "安装马桶、洗手盆 (Basin)、热水器 (Water Heater)，确保安装稳固且不漏水。", icon: Droplets },
+        { title: "电力维修", description: "若电箱容量不足，我们提供更换与升级配电箱 (DB Box) 服务。", icon: Zap },
+        { title: "电器配件安装", description: "安装各类风扇、插头 (Socket)、更换开关 (Switch)、以及住家与店屋的灯具照明安装。", icon: Lightbulb }
       ] as ServiceItem[]
     },
     process: {
@@ -134,10 +134,10 @@ export const TRANSLATIONS = {
       mainTitle: "Residential & Commercial Services",
       description: "We undertake all electrical repair and plumbing works for homes and shop lots, providing reliable solutions.",
       items: [
-        { title: "Electrical Repair", description: "We upgrade Distribution Boards (DB Box) and fix circuit breakers.", icon: Zap },
-        { title: "Electrical Installations", description: "Professional installation of ceiling fans, water heaters, wall sockets, switches, and LED lighting fixtures for homes and offices.", icon: Lightbulb },
         { title: "Plumbing & Piping Works", description: "Complete plumbing solutions: Leak detection, pipe installation/re-piping, poly pipe replacement, and water tank (Tangki) services.", icon: Wrench },
-        { title: "Sanitary & Bathroom Installation", description: "Installation of toilets (WC), wash basins, bidets, sinks, and instant/storage water heaters with safety checks.", icon: Droplets }
+        { title: "Sanitary & Bathroom Installation", description: "Installation of toilets (WC), wash basins, bidets, sinks, and instant/storage water heaters with safety checks.", icon: Droplets },
+        { title: "Electrical Repair", description: "We upgrade Distribution Boards (DB Box) and fix circuit breakers.", icon: Zap },
+        { title: "Electrical Installations", description: "Professional installation of ceiling fans, water heaters, wall sockets, switches, and LED lighting fixtures for homes and offices.", icon: Lightbulb }
       ] as ServiceItem[]
     },
     process: {
