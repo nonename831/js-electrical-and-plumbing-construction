@@ -38,13 +38,13 @@ export const Header: React.FC = () => {
         fetchPriority="high"
         className="absolute inset-0 w-full h-full object-cover object-[50%_30%] z-0"
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-[#0a3d62]/85 to-slate-900/90 lg:bg-gradient-to-r lg:from-slate-900/95 lg:via-[#0a3d62]/80 lg:to-slate-900/60 z-0" />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-[#0a3d62]/85 to-slate-900/90 lg:bg-gradient-to-r lg:from-slate-900/95 lg:via-[#0a3d62]/70 lg:to-slate-900/25 z-0" />
       <div
         className="absolute inset-0 opacity-10 z-0"
         style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-12 pb-20 md:pb-24 short:pt-5 short:pb-14 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-12 pb-20 md:pb-24 lg:pt-20 lg:pb-32 short:pt-5 short:pb-14 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:justify-between">
 
           {/* Left: Branding */}
@@ -56,19 +56,19 @@ export const Header: React.FC = () => {
                 {CONTACT_INFO.area}
               </div>
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl short:text-3xl font-extrabold tracking-tight text-white leading-tight text-balance">
+              <h1 className="text-3xl md:text-4xl lg:text-6xl short:text-3xl font-extrabold tracking-tight text-white leading-tight text-balance">
                 {t.header.titleLine1}
                 {t.header.titleLine2 && (
                   <span className="block text-brand-cyan mt-1">{t.header.titleLine2}</span>
                 )}
               </h1>
-              <p className="mt-3 text-lg text-blue-100/90 font-medium">
+              <p className="mt-3 lg:mt-4 text-lg lg:text-xl text-blue-100/90 font-medium">
                 {t.header.taglinePrefix}{' '}
                 <span className="text-white font-bold">{t.header.taglineSuffix}</span>
               </p>
 
               {/* Badges with staggered pop-in */}
-              <div className="mt-6 short:mt-3 flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
+              <div className="mt-6 lg:mt-8 short:mt-3 flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
                 {badges.map((badge, i) => (
                   <div
                     key={i}

@@ -4,7 +4,9 @@ import { OPENING_HOURS } from './siteData';
 
 export { CONTACT_INFO } from './siteData';
 
-const HOURS = `${OPENING_HOURS.opens} – ${OPENING_HOURS.closes}`;
+// Non-breaking spaces keep "08:00 – 20:00" on one line when the text wraps
+const NBSP = String.fromCharCode(160);
+const HOURS = `${OPENING_HOURS.opens}${NBSP}–${NBSP}${OPENING_HOURS.closes}`;
 
 export const TRANSLATIONS = {
   zh: {
@@ -69,6 +71,18 @@ export const TRANSLATIONS = {
       close: "关闭",
       prev: "上一张",
       next: "下一张"
+    },
+    faq: {
+      eyebrow: "常见问题",
+      title: "维修前，你可能想知道",
+      more: "还有其他问题？",
+      ask: "WhatsApp 问我们",
+      items: [
+        { q: "周日有开工吗？", a: `周日休息。营业时间是周一至周六 ${HOURS}。` },
+        { q: "你们服务哪些地区？", a: "主要在新山（Johor Bahru），包括 Skudai、Mount Austin、Bukit Indah、Tebrau、Perling 等地区。" },
+        { q: "可以先发照片报价吗？", a: "可以。WhatsApp 发照片和说明问题，我们会先给你一个大概的价钱，确认后再约时间上门。" },
+        { q: "上门看要收费吗？", a: "小问题通常不另收上门费，具体可以先 WhatsApp 问我们。" }
+      ]
     },
     contact: {
       title: "联系我们",
@@ -146,6 +160,18 @@ export const TRANSLATIONS = {
       close: "Close",
       prev: "Previous image",
       next: "Next image"
+    },
+    faq: {
+      eyebrow: "FAQ",
+      title: "Good to know before we come",
+      more: "Still have a question?",
+      ask: "Ask us on WhatsApp",
+      items: [
+        { q: "Do you work on Sundays?", a: `We're closed on Sundays. Opening hours are Mon – Sat ${HOURS}.` },
+        { q: "Which areas do you cover?", a: "Mainly Johor Bahru, including Skudai, Mount Austin, Bukit Indah, Tebrau, Perling and nearby areas." },
+        { q: "Can I send photos for a quote first?", a: "Yes. WhatsApp us photos and a short description, we'll give you a rough price first, then book a visit." },
+        { q: "Is there a call-out fee?", a: "Small jobs usually have no separate call-out fee. WhatsApp us for details." }
+      ]
     },
     contact: {
       title: "Get In Touch",
