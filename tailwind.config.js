@@ -3,6 +3,9 @@ export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      screens: {
+        short: { raw: '(orientation: landscape) and (max-height: 500px)' },
+      },
       // Inter for Latin; explicit CJK fallbacks so Chinese renders consistently across OSes
       fontFamily: { sans: ['Inter', '"PingFang SC"', '"Hiragino Sans GB"', '"Microsoft YaHei"', '"Noto Sans SC"', 'sans-serif'] },
       colors: {

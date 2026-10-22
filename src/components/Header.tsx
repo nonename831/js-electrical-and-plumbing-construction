@@ -43,19 +43,19 @@ export const Header: React.FC = () => {
         style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 short:py-5 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:justify-between">
 
           {/* Left: Branding */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-5 flex-1 w-full">
             <div className="max-w-2xl relative">
               {/* Eyebrow label */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-blue-200 text-xs font-bold uppercase tracking-widest mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-blue-200 text-xs font-bold uppercase tracking-widest mb-4 short:mb-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse" />
                 {CONTACT_INFO.area}
               </div>
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight text-balance">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl short:text-3xl font-extrabold tracking-tight text-white leading-tight text-balance">
                 {t.header.titleLine1}
                 {t.header.titleLine2 && (
                   <span className="block text-brand-cyan mt-1">{t.header.titleLine2}</span>
@@ -67,7 +67,7 @@ export const Header: React.FC = () => {
               </p>
 
               {/* Badges with staggered pop-in */}
-              <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
+              <div className="mt-6 short:mt-3 flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
                 {badges.map((badge, i) => (
                   <div
                     key={i}
@@ -82,7 +82,7 @@ export const Header: React.FC = () => {
               </div>
 
               {/* Call / WhatsApp CTAs (below lg the contact card is hidden) */}
-              <div className="mt-8 grid grid-cols-2 gap-3 w-full max-w-sm mx-auto lg:hidden">
+              <div className="mt-8 short:mt-4 grid grid-cols-2 gap-3 w-full max-w-sm mx-auto lg:hidden">
                 <a
                   href={CONTACT_INFO.telUrl}
                   onClick={() => trackEvent('phone_click', { source: 'header_mobile' })}

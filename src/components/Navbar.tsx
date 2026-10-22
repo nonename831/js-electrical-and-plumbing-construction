@@ -26,11 +26,11 @@ export const Navbar: React.FC = () => {
 
   return (
     <nav className={`sticky top-0 z-50 w-full transition-all duration-300 animate-fade-in-down ${scrolled
-      ? 'bg-white/95 backdrop-blur-md shadow-md py-2 border-b border-gray-200'
-      : 'bg-white py-3 shadow-sm border-b border-gray-100'}`}
+      ? 'bg-white/95 backdrop-blur-md shadow-md py-2 short:py-1 border-b border-gray-200'
+      : 'bg-white py-3 short:py-1 shadow-sm border-b border-gray-100'}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-16 md:h-20 short:h-14">
 
           {/* Left: Logo */}
           <a href="#home" className="flex items-center gap-3 flex-shrink-0 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">
@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
               draggable={false}
               width="241"
               height="56"
-              className="h-10 md:h-14 w-auto object-contain"
+              className="h-10 md:h-14 short:h-10 w-auto object-contain"
               onError={e => { e.currentTarget.style.display = 'none'; }}
             />
           </a>

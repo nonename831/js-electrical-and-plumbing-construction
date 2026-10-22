@@ -6,6 +6,17 @@ html {
   scroll-behavior: smooth;
 }
 
+@layer base {
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-brand-blue;
+  }
+
+  header :focus-visible,
+  footer :focus-visible {
+    @apply outline-brand-cyan;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
