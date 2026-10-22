@@ -3,16 +3,38 @@ import { Menu, X, Phone } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { CONTACT_INFO } from '../constants';
 import { trackEvent } from '../lib/analytics';
+import { copyPhoneOnDesktop } from '../lib/phone';
+
+const SECTION_IDS = ['services', 'gallery', 'contact'];
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Highlight the nav link of the section crossing the middle of the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+          else setActiveSection(current => (current === entry.target.id ? null : current));
+        }
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    for (const id of SECTION_IDS) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+    return () => observer.disconnect();
   }, []);
 
   const toggleMenu = () => setIsOpen(open => !open);
@@ -47,16 +69,20 @@ export const Navbar: React.FC = () => {
 
           {/* Desktop Center: Links */}
           <div className="hidden lg:flex items-center gap-10 absolute left-1/2 transform -translate-x-1/2">
-            {navLinks.map(link => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-gray-600 hover:text-brand-blue font-bold transition-colors text-base uppercase tracking-wide relative group"
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-blue transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
+            {navLinks.map(link => {
+              const active = activeSection === link.href.slice(1);
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? 'location' : undefined}
+                  className={`${active ? 'text-brand-blue' : 'text-gray-600'} hover:text-brand-blue font-bold transition-colors text-base uppercase tracking-wide relative group`}
+                >
+                  {link.name}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-blue transition-all duration-300 group-hover:w-full ${active ? 'w-full' : 'w-0'}`} />
+                </a>
+              );
+            })}
           </div>
 
           {/* Right: Language + Call */}
@@ -80,7 +106,7 @@ export const Navbar: React.FC = () => {
             </button>
             <a
               href={CONTACT_INFO.telUrl}
-              onClick={() => trackEvent('phone_click', { source: 'navbar_desktop' })}
+              onClick={e => { trackEvent('phone_click', { source: 'navbar_desktop' }); copyPhoneOnDesktop(e, t.phoneCopy); }}
               className="flex items-center gap-2 bg-brand-dark hover:bg-brand-blue text-white px-6 py-2.5 rounded-full text-base font-bold shadow-md transition-all transform hover:scale-105"
             >
               <Phone size={20} className="fill-current" />
@@ -125,7 +151,8 @@ export const Navbar: React.FC = () => {
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className={`block text-center text-lg font-bold text-slate-800 hover:text-brand-blue hover:bg-slate-50 py-4 rounded-xl transition-all duration-300 transform ${isOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
+              aria-current={activeSection === link.href.slice(1) ? 'location' : undefined}
+              className={`block text-center text-lg font-bold ${activeSection === link.href.slice(1) ? 'text-brand-blue bg-slate-50' : 'text-slate-800'} hover:text-brand-blue hover:bg-slate-50 py-4 rounded-xl transition-all duration-300 transform ${isOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
               style={{ transitionDelay: `${idx * 100}ms` }}
             >
               {link.name}
@@ -134,7 +161,7 @@ export const Navbar: React.FC = () => {
           <div className={`pt-4 mt-2 transition-all duration-500 delay-200 transform ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
             <a
               href={CONTACT_INFO.telUrl}
-              onClick={() => trackEvent('phone_click', { source: 'navbar_mobile' })}
+              onClick={e => { trackEvent('phone_click', { source: 'navbar_mobile' }); copyPhoneOnDesktop(e, t.phoneCopy); }}
               className="flex items-center justify-center gap-3 bg-brand-blue text-white px-4 py-4 rounded-xl text-lg font-bold w-full shadow-lg active:scale-95 transition-all"
             >
               <Phone size={20} className="fill-current" />

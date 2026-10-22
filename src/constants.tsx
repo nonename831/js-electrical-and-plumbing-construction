@@ -28,8 +28,16 @@ export const TRANSLATIONS = {
       badgePlumbing: "水喉工程",
       callUs: "立即致电"
     },
+    // Facts only (no invented job counts) for the strip under the hero
+    trust: [
+      { value: "20+", label: "年维修经验" },
+      { value: "新山", label: "主要服务地区" },
+      { value: "周一至六", label: HOURS },
+      { value: "电工 + 水喉", label: "一站式服务" }
+    ],
     services: {
       sectionTitle: "我们的服务",
+      viewWork: "查看案例",
       mainTitle: "住家与店屋维修安装",
       description: "身为新山电工与水喉团队，我们承接所有住家与店屋的电力维修和水喉工程，提供安全、可靠的解决方案。",
       items: [
@@ -59,10 +67,11 @@ export const TRANSLATIONS = {
       serviceArea: "服务范围",
       covering: "主要覆盖区域",
       chatButton: "WhatsApp 联系我们",
-      hours: `营业时间：每天 ${HOURS}`,
+      hours: `营业时间：周一至周六 ${HOURS}`,
       response: "营业时间内保证快速回复"
     },
     whatsappMessage: "你好，我想咨询电工/水喉服务。",
+    phoneCopy: { copied: "号码已复制：", fallback: "请拨打 " },
     footer: { rights: "版权所有。" },
     floating: { chat: "立即咨询", ariaLabel: "WhatsApp 咨询" }
   },
@@ -87,8 +96,15 @@ export const TRANSLATIONS = {
       badgePlumbing: "Plumbing",
       callUs: "Call Us Today"
     },
+    trust: [
+      { value: "20+", label: "years experience" },
+      { value: "Johor Bahru", label: "main service area" },
+      { value: "Mon – Sat", label: HOURS },
+      { value: "One-stop", label: "electrical + plumbing" }
+    ],
     services: {
       sectionTitle: "What We Do",
+      viewWork: "See our work",
       mainTitle: "Residential & Commercial Services",
       description: "We undertake all electrical repair and plumbing works for homes and shop lots, providing reliable solutions.",
       items: [
@@ -118,10 +134,11 @@ export const TRANSLATIONS = {
       serviceArea: "Service Area",
       covering: "Covering major areas in",
       chatButton: "Chat on WhatsApp",
-      hours: `Open daily ${HOURS}`,
+      hours: `Open Mon – Sat ${HOURS}`,
       response: "Fast response guaranteed during business hours"
     },
     whatsappMessage: "Hi, I'd like to enquire about electrical/plumbing services.",
+    phoneCopy: { copied: "Number copied: ", fallback: "Please call " },
     footer: { rights: "All rights reserved." },
     floating: { chat: "Chat Now", ariaLabel: "Chat on WhatsApp" }
   }

@@ -4,7 +4,21 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Language } from '../types';
 
-type Category = 'electrical' | 'plumbing';
+export type Category = 'electrical' | 'plumbing';
+
+// Lets other sections (e.g. a service card's "see our work" link) switch the gallery tab
+const SHOW_CATEGORY_EVENT = 'gallery:show';
+export const showGalleryCategory = (category: Category) =>
+  window.dispatchEvent(new CustomEvent<Category>(SHOW_CATEGORY_EVENT, { detail: category }));
+
+// Bento layout per position: one featured tile, one wide, two small.
+// Phones: featured full width, two squares, then a wide strip.
+const TILE_CLASSES = [
+  'col-span-2 aspect-[4/3] md:aspect-auto md:row-span-2',
+  'aspect-square md:aspect-auto md:col-span-2',
+  'aspect-square md:aspect-auto',
+  'col-span-2 aspect-[2/1] md:col-span-1 md:aspect-auto',
+];
 
 interface GalleryImage {
   src: string;
@@ -24,7 +38,7 @@ const IMAGES: GalleryImage[] = [
   { src: `${BASE}/electrical-1.webp`, category: 'electrical', caption: { zh: '安装配电箱', en: 'DB Box Installation' } },
   { src: `${BASE}/electrical-2.webp`, category: 'electrical', caption: { zh: '安装插头', en: 'Socket Installation' } },
   { src: `${BASE}/electrical-3.webp`, category: 'electrical', caption: { zh: '安装灯具', en: 'Light Fixture Installation' }, objectPosition: 'top' },
-  { src: `${BASE}/electrical-4.webp`, category: 'electrical', caption: { zh: '安装风扇', en: 'Ceiling Fan Installation' } },
+  { src: `${BASE}/electrical-4.webp`, category: 'electrical', caption: { zh: '安装风扇', en: 'Ceiling Fan Installation' }, objectPosition: '50% 10%' },
   { src: `${BASE}/plumbing-1.webp`, category: 'plumbing', caption: { zh: '安装热水器', en: 'Water Heater Installation' }, objectPosition: '50% 20%' },
   { src: `${BASE}/plumbing-2.webp`, category: 'plumbing', caption: { zh: '水管维修', en: 'Pipe Repair' }, objectPosition: '50% 10%' },
   { src: `${BASE}/plumbing-3.webp`, category: 'plumbing', caption: { zh: '安装马桶', en: 'Toilet Installation' }, objectPosition: 'top' },
@@ -173,6 +187,15 @@ export const Gallery: React.FC = () => {
 
   const filtered = IMAGES.filter(img => img.category === activeCategory);
 
+  useEffect(() => {
+    const onShow = (e: Event) => {
+      setActiveCategory((e as CustomEvent<Category>).detail);
+      setLightboxIndex(null);
+    };
+    window.addEventListener(SHOW_CATEGORY_EVENT, onShow);
+    return () => window.removeEventListener(SHOW_CATEGORY_EVENT, onShow);
+  }, []);
+
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
   const prevImage = useCallback(() => setLightboxIndex(i => (i !== null && i > 0 ? i - 1 : i)), []);
   const nextImage = useCallback(() => setLightboxIndex(i => (i !== null && i < filtered.length - 1 ? i + 1 : i)), [filtered.length]);
@@ -217,19 +240,19 @@ export const Gallery: React.FC = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 md:auto-rows-[220px] gap-3 md:gap-4">
           {filtered.map((img, i) => (
             <button
               key={img.src}
               type="button"
               onClick={() => setLightboxIndex(i)}
-              className="group relative block w-full aspect-square rounded-xl overflow-hidden cursor-pointer bg-slate-100 shadow-sm hover:shadow-lg transition-all duration-150 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
+              className={`group relative block w-full ${TILE_CLASSES[i] ?? 'aspect-square'} rounded-2xl overflow-hidden cursor-pointer bg-slate-100 shadow-sm hover:shadow-lg transition-all duration-150 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue`}
             >
               <span className="absolute inset-0 flex items-center justify-center bg-slate-100 text-slate-300">
                 {activeCategory === 'electrical' ? <Zap size={32} /> : <Droplets size={32} />}
               </span>
               <img
-                src={thumbOf(img.src)}
+                src={i === 0 ? img.src : thumbOf(img.src)}
                 alt={img.caption[language]}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-150 group-hover:scale-105"
@@ -241,7 +264,7 @@ export const Gallery: React.FC = () => {
               </span>
               {/* Always visible on touch screens (no hover); hover/focus reveal on desktop */}
               <span className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/60 to-transparent md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100 transition-opacity duration-150 text-left">
-                <span className="block text-white text-xs font-semibold truncate" aria-hidden="true">
+                <span className={`block text-white font-semibold truncate ${i === 0 ? 'text-sm md:text-base' : 'text-xs'}`} aria-hidden="true">
                   {img.caption[language]}
                 </span>
               </span>

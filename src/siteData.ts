@@ -21,6 +21,8 @@ export const CONTACT_INFO = {
 };
 
 export const OPENING_HOURS = { opens: '08:00', closes: '20:00' };
+// Closed on Sundays
+const OPENING_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 export const AREAS_SERVED = [
   'Johor Bahru', 'Skudai', 'Mount Austin', 'Bukit Indah',
@@ -86,7 +88,7 @@ export function buildJsonLd(language: Language) {
         geo: { '@type': 'GeoCoordinates', latitude: '1.4927', longitude: '103.7414' },
         openingHoursSpecification: [{
           '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          dayOfWeek: OPENING_DAYS,
           ...OPENING_HOURS,
         }],
         areaServed: AREAS_SERVED.map(name => ({ '@type': 'City', name })),

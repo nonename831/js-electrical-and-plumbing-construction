@@ -3,6 +3,7 @@ import { Phone, MapPin, Zap, Droplets, Award, MessageCircle } from 'lucide-react
 import { CONTACT_INFO } from '../constants';
 import { useLanguage } from '../contexts/LanguageContext';
 import { trackEvent } from '../lib/analytics';
+import { copyPhoneOnDesktop } from '../lib/phone';
 
 export const Header: React.FC = () => {
   const { t, whatsappUrl } = useLanguage();
@@ -43,7 +44,7 @@ export const Header: React.FC = () => {
         style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 short:py-5 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-12 pb-20 md:pb-24 short:pt-5 short:pb-14 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:justify-between">
 
           {/* Left: Branding */}
@@ -85,7 +86,7 @@ export const Header: React.FC = () => {
               <div className="mt-8 short:mt-4 grid grid-cols-2 gap-3 w-full max-w-sm mx-auto lg:hidden">
                 <a
                   href={CONTACT_INFO.telUrl}
-                  onClick={() => trackEvent('phone_click', { source: 'header_mobile' })}
+                  onClick={e => { trackEvent('phone_click', { source: 'header_mobile' }); copyPhoneOnDesktop(e, t.phoneCopy); }}
                   className="flex items-center justify-center gap-2 bg-brand-blue text-white py-3.5 rounded-full font-bold shadow-lg active:scale-95 transition-all"
                 >
                   <Phone size={18} className="fill-current" />
@@ -116,7 +117,7 @@ export const Header: React.FC = () => {
                 </div>
                 <a
                   href={CONTACT_INFO.telUrl}
-                  onClick={() => trackEvent('phone_click', { source: 'header_card' })}
+                  onClick={e => { trackEvent('phone_click', { source: 'header_card' }); copyPhoneOnDesktop(e, t.phoneCopy); }}
                   className="block text-4xl font-bold text-white hover:text-brand-cyan transition-colors duration-150 mb-3 tracking-tight"
                 >
                   {CONTACT_INFO.phone}

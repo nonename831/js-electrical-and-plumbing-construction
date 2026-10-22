@@ -6,6 +6,9 @@ import { Gallery } from './components/Gallery';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { SEO } from './components/Seo';
+import { TrustStrip } from './components/TrustStrip';
+import { MobileActionBar } from './components/MobileActionBar';
+import { Toast } from './components/Toast';
 import { MessageCircle } from 'lucide-react';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { useScrollReveal } from './hooks/useScrollReveal';
@@ -33,6 +36,7 @@ const AppContent: React.FC = () => {
       <SEO />
       <Navbar />
       <Header />
+      <TrustStrip />
 
       <main className="flex-grow">
         <Services />
@@ -42,13 +46,16 @@ const AppContent: React.FC = () => {
 
       <Footer />
 
-      {/* Floating WhatsApp Button */}
+      <MobileActionBar />
+      <Toast />
+
+      {/* Floating WhatsApp Button (desktop; phones/tablets get MobileActionBar) */}
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => trackEvent('whatsapp_click', { source: 'floating_button' })}
-        className="fixed bottom-6 right-6 z-50 group flex items-center justify-center"
+        className="hidden lg:flex fixed bottom-6 right-6 z-50 group items-center justify-center"
         aria-label={t.floating.ariaLabel}
       >
         <span className="absolute inline-flex h-full w-full rounded-full bg-brand-green/60 animate-ping-few" />

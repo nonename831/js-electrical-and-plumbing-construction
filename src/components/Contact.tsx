@@ -3,6 +3,7 @@ import { Phone, MapPin, MessageCircle, Clock } from 'lucide-react';
 import { AREAS_SERVED, CONTACT_INFO } from '../siteData';
 import { useLanguage } from '../contexts/LanguageContext';
 import { trackEvent } from '../lib/analytics';
+import { copyPhoneOnDesktop } from '../lib/phone';
 
 export const Contact: React.FC = () => {
   const { t, whatsappUrl } = useLanguage();
@@ -27,7 +28,7 @@ export const Contact: React.FC = () => {
               <p className="text-gray-600 mb-2">{CONTACT_INFO.contactName}</p>
               <a
                 href={CONTACT_INFO.telUrl}
-                onClick={() => trackEvent('phone_click', { source: 'contact_section' })}
+                onClick={e => { trackEvent('phone_click', { source: 'contact_section' }); copyPhoneOnDesktop(e, t.phoneCopy); }}
                 className="text-brand-blue font-semibold text-lg hover:underline"
               >
                 {CONTACT_INFO.phone}
